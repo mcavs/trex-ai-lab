@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { useTranslations, localizedUrl } from "../i18n/utils";
+
+const lang = "en";
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={t("404.title")}>
+  <section class="section wrap center">
+    <p class="eyebrow">404</p>
+    <h1>{t("404.title")}</h1>
+    <p class="muted">{t("404.body")}</p>
+    <div class="actions">
+      <a class="arrow" href={localizedUrl("en", "")}>English →</a>
+      <a class="arrow" href={localizedUrl("tr", "")}>Türkçe →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .center {
+    padding-block: 5rem;
+  }
+  .actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+</style>

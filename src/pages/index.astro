@@ -1,0 +1,40 @@
+---
+// Root entry: detect language and redirect to /en or /tr.
+// Static-host friendly — no server-side geo, uses stored choice then browser language.
+import { localizedUrl } from "../i18n/utils";
+
+const enUrl = localizedUrl("en", "");
+const trUrl = localizedUrl("tr", "");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discern Lab</title>
+    <link rel="canonical" href={enUrl} />
+    <!-- Fallback for no-JS clients -->
+    <meta http-equiv="refresh" content={`0; url=${enUrl}`} />
+    <script is:inline define:vars={{ enUrl, trUrl }}>
+      (function () {
+        var target = enUrl;
+        try {
+          var stored = localStorage.getItem("lang");
+          if (stored === "tr") target = trUrl;
+          else if (stored === "en") target = enUrl;
+          else {
+            var nav = (navigator.language || "en").toLowerCase();
+            if (nav.indexOf("tr") === 0) target = trUrl;
+          }
+        } catch (e) {}
+        location.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+    <p style="font-family: sans-serif; padding: 2rem;">
+      Redirecting… <a href={enUrl}>English</a> · <a href={trUrl}>Türkçe</a>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ugurdar.github.io/xmu_lab/sitemap-index.xml

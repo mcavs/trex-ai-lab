@@ -1,0 +1,129 @@
+---
+import { localizedUrl, useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const social = {
+  github: "https://github.com/mcavs",
+  scholar: "https://scholar.google.com/citations?user=I63d1WIAAAAJ&hl=en",
+  linkedin: "https://www.linkedin.com/in/mustafacavusphd/",
+  x: "",
+};
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-cmd">
+      <span class="prompt">discern:~$</span> cat ./about
+    </div>
+    <p class="foot-about out">{t("site.description")}</p>
+
+    <div class="foot-grid">
+      <nav class="foot-col" aria-label="Footer">
+        <span class="foot-h">// pages</span>
+        <a href={localizedUrl(lang, "team")}>{t("nav.team")}</a>
+        <a href={localizedUrl(lang, "papers")}>{t("nav.papers")}</a>
+        <a href={localizedUrl(lang, "blog")}>{t("nav.blog")}</a>
+        <a href={localizedUrl(lang, "research")}>{t("nav.research")}</a>
+        <a href={localizedUrl(lang, "contact")}>{t("nav.contact")}</a>
+      </nav>
+      <div class="foot-col">
+        <span class="foot-h">// links</span>
+        {social.github && <a href={social.github} target="_blank" rel="noopener">github ↗</a>}
+        {social.scholar && <a href={social.scholar} target="_blank" rel="noopener">scholar ↗</a>}
+        {social.linkedin && <a href={social.linkedin} target="_blank" rel="noopener">linkedin ↗</a>}
+        {social.x && <a href={social.x} target="_blank" rel="noopener">x ↗</a>}
+      </div>
+    </div>
+
+    <div class="foot-base">
+      <span class="out"># © {year} Discern Lab — {t("footer.rights")}</span>
+      <span class="out"># {t("footer.builtWith")}</span>
+    </div>
+
+    <div class="foot-exit">
+      <span class="prompt">discern:~$</span> exit<span class="exit-cursor" aria-hidden="true"></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+    padding-block: 2.5rem 2rem;
+    font-size: 0.88rem;
+  }
+  .foot-cmd {
+    font-size: 0.92rem;
+  }
+  .foot-about {
+    margin-top: 0.4rem;
+    max-width: 60ch;
+  }
+  .foot-grid {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .foot-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .foot-h {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin-bottom: 0.2rem;
+  }
+  .foot-col a {
+    color: var(--text);
+    border-bottom: none;
+    width: max-content;
+  }
+  .foot-col a:hover {
+    color: var(--accent);
+  }
+  .foot-base {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+  }
+  .foot-exit {
+    margin-top: 1.5rem;
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+  }
+  .exit-cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.05em;
+    margin-left: 0.3rem;
+    background: var(--accent);
+    box-shadow: var(--accent-glow);
+    animation: blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .exit-cursor {
+      animation: none;
+    }
+  }
+</style>

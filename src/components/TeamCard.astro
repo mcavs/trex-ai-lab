@@ -1,0 +1,113 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  member: CollectionEntry<"team">;
+  lang: Lang;
+}
+const { member, lang } = Astro.props;
+const d = member.data;
+const role = lang === "tr" ? d.role_tr : d.role_en;
+const bio = lang === "tr" ? d.bio_tr : d.bio_en;
+const l = d.links ?? {};
+---
+
+<article class="card member">
+  <div class="avatar-frame">
+    <Image
+      src={d.photo}
+      alt={d.name}
+      width={400}
+      height={500}
+      densities={[1, 2]}
+      class="avatar"
+    />
+  </div>
+  <div class="body">
+    <h3 class="name">{d.name}</h3>
+    <p class="role">{role}</p>
+    <p class="bio muted">{bio}</p>
+    <div class="links">
+      {l.website && <a href={l.website} target="_blank" rel="noopener" aria-label={`${d.name} website`}>Web</a>}
+      {l.scholar && <a href={l.scholar} target="_blank" rel="noopener" aria-label={`${d.name} Google Scholar`}>Scholar</a>}
+      {l.github && <a href={l.github} target="_blank" rel="noopener" aria-label={`${d.name} GitHub`}>GitHub</a>}
+      {l.linkedin && <a href={l.linkedin} target="_blank" rel="noopener" aria-label={`${d.name} LinkedIn`}>LinkedIn</a>}
+      {l.x && <a href={l.x} target="_blank" rel="noopener" aria-label={`${d.name} X`}>X</a>}
+      {l.email && <a href={`mailto:${l.email}`} aria-label={`Email ${d.name}`}>Email</a>}
+    </div>
+  </div>
+</article>
+
+<style>
+  .member {
+    display: flex;
+    flex-direction: column;
+  }
+  .avatar-frame {
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .avatar {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.02) brightness(0.95) sepia(0.22);
+    transition: filter 0.25s;
+  }
+  .member:hover .avatar {
+    filter: none;
+  }
+  .body {
+    padding: 0.8rem 0 0;
+  }
+  .name {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.2;
+  }
+  .name::before {
+    content: "● ";
+    color: var(--accent);
+    font-size: 0.7em;
+    vertical-align: middle;
+  }
+  .role {
+    display: block;
+    color: var(--accent);
+    font-size: 0.82rem;
+    margin-top: 0.25rem;
+  }
+  .bio {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-top: 0.6rem;
+    color: var(--text-muted);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin-top: 0.8rem;
+  }
+  .links a {
+    font-size: 0.82rem;
+    color: var(--accent-ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .links a::before {
+    content: "▸";
+    color: var(--accent);
+    margin-right: 0.25em;
+  }
+  .links a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>

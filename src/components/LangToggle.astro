@@ -1,0 +1,72 @@
+---
+import { alternateLangUrl, useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const target: Lang = lang === "en" ? "tr" : "en";
+const href = alternateLangUrl(Astro.url, target);
+---
+
+<a
+  class="lang-toggle"
+  href={href}
+  aria-label={t("lang.toggle")}
+  title={t("lang.toggle")}
+  data-set-lang={target}
+>
+  <span class={lang === "en" ? "on" : "off"}>EN</span>
+  <span aria-hidden="true" class="sep">/</span>
+  <span class={lang === "tr" ? "on" : "off"}>TR</span>
+</a>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    border-bottom: none;
+    color: var(--text-muted);
+  }
+  .lang-toggle::before {
+    content: "[";
+    color: var(--text-muted);
+  }
+  .lang-toggle::after {
+    content: "]";
+    color: var(--text-muted);
+  }
+  .lang-toggle:hover {
+    color: var(--text-muted);
+  }
+  .lang-toggle .on {
+    color: var(--accent);
+    text-shadow: var(--accent-glow);
+  }
+  .lang-toggle .off {
+    color: var(--text-muted);
+  }
+  .sep {
+    color: var(--line-strong);
+  }
+</style>
+
+<script is:inline>
+  // Remember the user's explicit language choice so the root redirect respects it.
+  (function () {
+    document.querySelectorAll("[data-set-lang]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        try {
+          localStorage.setItem("lang", el.getAttribute("data-set-lang"));
+        } catch (e) {}
+      });
+    });
+  })();
+</script>

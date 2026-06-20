@@ -1,0 +1,168 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  paper: CollectionEntry<"papers">;
+  lang: Lang;
+}
+const { paper, lang } = Astro.props;
+const t = useTranslations(lang);
+const d = paper.data;
+const blurb = lang === "tr" ? d.blurb_tr : d.blurb_en;
+const links = d.links ?? {};
+
+// Render authors, turning a trailing "*" into an equal-contribution marker.
+const authors = d.authors.map((a) => ({
+  name: a.replace(/\*$/, ""),
+  equal: a.endsWith("*"),
+}));
+const hasEqual = authors.some((a) => a.equal);
+
+const linkOrder: [keyof typeof links, string][] = [
+  ["arxiv", t("papers.link.arxiv")],
+  ["pdf", t("papers.link.pdf")],
+  ["doi", t("papers.link.doi")],
+  ["code", t("papers.link.code")],
+  ["openreview", t("papers.link.openreview")],
+];
+const titleHref =
+  links.arxiv || links.doi || links.openreview || links.pdf || undefined;
+---
+
+<article class="paper">
+  {
+    d.thumbnail && (
+      <Image
+        src={d.thumbnail}
+        alt={d.title}
+        width={220}
+        height={140}
+        class="thumb"
+      />
+    )
+  }
+  <div class="meta">
+    <h3 class="title">
+      {titleHref ? <a href={titleHref} target="_blank" rel="noopener">{d.title}</a> : d.title}
+    </h3>
+    <p class="authors">
+      {authors.map((a, i) => (
+        <>
+          <span>{a.name}{a.equal && <sup>*</sup>}</span>{i < authors.length - 1 ? ", " : ""}
+        </>
+      ))}
+    </p>
+    <p class="venue">{d.venue} ({d.year})</p>
+    <p class="blurb muted">{blurb}</p>
+    {hasEqual && <p class="equal muted">* {t("papers.equalContrib")}</p>}
+    <div class="links">
+      {linkOrder.map(([key, label]) =>
+        links[key] ? (
+          <a class="chip-link" href={links[key]} target="_blank" rel="noopener">
+            {label}
+          </a>
+        ) : null
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  .paper {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 1.25rem;
+    padding: 1rem 0 1rem 0.9rem;
+    border-left: 2px solid transparent;
+    align-items: start;
+    transition: border-color 0.1s, background 0.1s;
+  }
+  .paper:hover {
+    border-left-color: var(--accent);
+    background: var(--accent-wash);
+  }
+  .paper:not(:has(.thumb)) {
+    grid-template-columns: 1fr;
+  }
+  .thumb {
+    width: 150px;
+    height: 95px;
+    object-fit: cover;
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    background: var(--bg-2);
+    filter: grayscale(1) contrast(1.05) brightness(0.95) sepia(0.2);
+    transition: filter 0.2s;
+  }
+  .paper:hover .thumb {
+    filter: none;
+  }
+  .title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.35;
+  }
+  .title a {
+    border-bottom: none;
+  }
+  .title a:hover {
+    color: var(--accent);
+  }
+  .authors {
+    margin-top: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+  .venue {
+    color: var(--accent);
+    font-size: 0.82rem;
+    margin-top: 0.3rem;
+  }
+  .blurb {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-top: 0.4rem;
+    max-width: 64ch;
+    color: var(--text-muted);
+  }
+  .equal {
+    font-size: 0.78rem;
+    margin-top: 0.3rem;
+    color: var(--text-muted);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    margin-top: 0.6rem;
+  }
+  .chip-link {
+    font-size: 0.82rem;
+    color: var(--accent-ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .chip-link::before {
+    content: "▸ ";
+    color: var(--accent);
+  }
+  .chip-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  @media (max-width: 640px) {
+    .paper {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    .thumb {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 10;
+    }
+  }
+</style>

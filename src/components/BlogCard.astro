@@ -1,0 +1,153 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { useTranslations } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  href: string;
+  authorName?: string;
+  lang: Lang;
+}
+const { post, href, authorName, lang } = Astro.props;
+const t = useTranslations(lang);
+const d = post.data;
+const size = d.cardSize;
+
+const dateFmt = new Intl.DateTimeFormat(lang === "tr" ? "tr-TR" : "en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+}).format(d.pubDate);
+---
+
+<article class:list={["post", size]}>
+  <div class="body">
+    <p class="post-meta">
+      <time datetime={d.pubDate.toISOString()}>{dateFmt}</time>
+      {authorName && <> · {authorName}</>}
+      {d.tags.length > 0 && <> · {d.tags.slice(0, 2).map((tg) => <span class="tag">{tg}</span>).reduce((a, b) => [a, " ", b])}</>}
+    </p>
+    <h3 class="post-title"><a href={href}>{d.title}</a></h3>
+    <p class="post-desc">{d.description}</p>
+    <a class="arrow" href={href}>{t("blog.readMore")} →</a>
+  </div>
+  {
+    d.cover && size !== "compact" && (
+      <a href={href} class="post-cover" tabindex="-1" aria-hidden="true">
+        <Image
+          src={d.cover}
+          alt={d.title}
+          width={size === "featured" ? 640 : 360}
+          height={size === "featured" ? 400 : 240}
+          class="cover-img"
+        />
+      </a>
+    )
+  }
+</article>
+
+<style>
+  .post {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.9rem 0 0.9rem 0.9rem;
+    border-left: 2px solid transparent;
+    align-items: start;
+    transition: border-color 0.1s, background 0.1s;
+  }
+  .post:hover {
+    border-left-color: var(--accent);
+    background: var(--accent-wash);
+  }
+  .post-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+  }
+  .post-meta time {
+    color: var(--accent);
+  }
+  .post-title {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    line-height: 1.3;
+    font-size: 1.1rem;
+  }
+  .post-title a {
+    border-bottom: none;
+  }
+  .post-title a::before {
+    content: "› ";
+    color: var(--accent);
+  }
+  .post-title a:hover {
+    color: var(--accent);
+  }
+  .post-desc {
+    margin-top: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 64ch;
+  }
+  .arrow {
+    display: inline-block;
+    margin-top: 0.7rem;
+  }
+  .cover-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+    background: var(--bg-2);
+    filter: grayscale(1) contrast(1.02) brightness(0.95) sepia(0.2);
+    transition: filter 0.25s;
+  }
+  .post:hover .cover-img {
+    filter: none;
+  }
+
+  /* standard: text + side thumbnail */
+  .post.standard {
+    grid-template-columns: 1fr 240px;
+    gap: 1.5rem;
+  }
+
+  /* featured: larger headline + image */
+  .post.featured .post-title {
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+  }
+  .post.featured .post-desc {
+    font-size: 1rem;
+  }
+  .post.featured {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  /* compact: a dense one-liner */
+  .post.compact .post-title {
+    font-size: 1rem;
+  }
+  .post.compact .post-desc,
+  .post.compact .arrow {
+    display: none;
+  }
+
+  @media (max-width: 720px) {
+    .post.standard,
+    .post.featured {
+      grid-template-columns: 1fr;
+      gap: 0.9rem;
+    }
+    .post.featured .post-cover,
+    .post.standard .post-cover {
+      order: -1;
+    }
+  }
+</style>

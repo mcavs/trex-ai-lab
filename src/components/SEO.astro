@@ -1,0 +1,43 @@
+---
+import { alternateLangUrl } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  image?: string;
+  ogType?: string;
+}
+
+const { title, description, lang, image, ogType = "website" } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = image
+  ? new URL(image, Astro.site).href
+  : new URL(`${import.meta.env.BASE_URL}/og-default.png`, Astro.site).href;
+
+// hreflang alternates
+const enHref = new URL(alternateLangUrl(Astro.url, "en"), Astro.site).href;
+const trHref = new URL(alternateLangUrl(Astro.url, "tr"), Astro.site).href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<link rel="alternate" hreflang="en" href={enHref} />
+<link rel="alternate" hreflang="tr" href={trHref} />
+<link rel="alternate" hreflang="x-default" href={enHref} />
+
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={lang === "tr" ? "tr_TR" : "en_US"} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />

@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TeamCard from "../../components/TeamCard.astro";
+import { useTranslations, locales } from "../../i18n/utils";
+import type { Lang, UIKey } from "../../i18n/ui";
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+
+const team = await getCollection("team");
+const sorted = team.sort((a, b) => a.data.order - b.data.order);
+
+const groups: { key: "member" | "collaborator" | "alumni"; title: UIKey }[] = [
+  { key: "member", title: "team.members" },
+  { key: "collaborator", title: "team.collaborators" },
+  { key: "alumni", title: "team.alumni" },
+];
+---
+
+<BaseLayout lang={lang} title={t("team.title")}>
+  <section class="section wrap">
+    <p class="cmd-head"><span class="pfx">discern:~$</span> who --all</p>
+
+    {
+      groups.map((g) => {
+        const members = sorted.filter((m) => m.data.group === g.key);
+        if (members.length === 0) return null;
+        return (
+          <div class="group">
+            <h2 class="group-title">// {t(g.title)}</h2>
+            <div class="team-grid">
+              {members.map((m) => (
+                <TeamCard member={m} lang={lang} />
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .group {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .group-title {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 2.5rem 2rem;
+  }
+</style>
