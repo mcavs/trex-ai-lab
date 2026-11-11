@@ -7,8 +7,9 @@ import type { Lang } from "../i18n/ui";
 interface Props {
   paper: CollectionEntry<"papers">;
   lang: Lang;
+  showBlurb?: boolean;
 }
-const { paper, lang } = Astro.props;
+const { paper, lang, showBlurb = true } = Astro.props;
 const t = useTranslations(lang);
 const d = paper.data;
 const blurb = lang === "tr" ? d.blurb_tr : d.blurb_en;
@@ -56,7 +57,7 @@ const titleHref =
       ))}
     </p>
     <p class="venue">{d.venue} ({d.year})</p>
-    <p class="blurb muted">{blurb}</p>
+    {showBlurb && <p class="blurb muted">{blurb}</p>}
     {hasEqual && <p class="equal muted">* {t("papers.equalContrib")}</p>}
     <div class="links">
       {linkOrder.map(([key, label]) =>

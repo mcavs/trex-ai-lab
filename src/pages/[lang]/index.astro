@@ -121,7 +121,6 @@ const consoleData = {
               <h3 class="area-title">
                 <a href={localizedUrl(lang, "projects")} class="proj-link">{tr ? proj.title_tr : proj.title_en}</a>
               </h3>
-              <p class="muted">{tr ? proj.desc_tr.split("\n\n")[0] : proj.desc_en.split("\n\n")[0]}</p>
             </div>
           </li>
         ))
@@ -137,7 +136,7 @@ const consoleData = {
           <p class="cmd-head"><span class="pfx">trex.ai:~$</span> papers <span class="flag">| head -3</span></p>
           <a class="arrow" href={localizedUrl(lang, "papers")}>{t("home.papers.all")} →</a>
         </div>
-        {papers.map((paper) => <PaperItem paper={paper} lang={lang} />)}
+        {papers.map((paper) => <PaperItem paper={paper} lang={lang} showBlurb={false} />)}
       </section>
     )
   }
