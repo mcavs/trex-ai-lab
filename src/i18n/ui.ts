@@ -45,8 +45,11 @@ export const ui = {
     "home.team.title": "The team",
     "home.team.all": "Meet the team",
     "home.join.title": "Join us",
+    "home.join.status": "No open positions right now",
     "home.join.body":
-      "We are always looking for curious minds. Reach out if you want to work on explainable AI.",
+      "We have no open positions at the moment. Please check back soon for new opportunities to join our mission of making AI transparent, reliable, and trustworthy.",
+    "home.join.note":
+      "If you would like to work with us, we are always glad to hear from you.",
     "home.join.cta": "Get in touch",
 
     "team.title": "Team",
@@ -123,8 +126,11 @@ export const ui = {
     "home.team.title": "Ekip",
     "home.team.all": "Ekibi tanı",
     "home.join.title": "Bize katıl",
+    "home.join.status": "Şu an açık pozisyon bulunmuyor",
     "home.join.body":
-      "Meraklı zihinleri her zaman arıyoruz. Açıklanabilir yapay zeka üzerine çalışmak istersen bize ulaş.",
+      "Şu anda açık bir pozisyonumuz bulunmamaktadır. Yapay zekâyı şeffaf, güvenilir ve hesap verebilir kılma misyonumuza katılmak için yeni fırsatları takip edebilirsiniz.",
+    "home.join.note":
+      "Bizimle çalışmak isterseniz, sizden haber almaktan her zaman memnuniyet duyarız.",
     "home.join.cta": "İletişime geç",
 
     "team.title": "Ekip",

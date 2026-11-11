@@ -182,7 +182,12 @@ const consoleData = {
   <section class="section wrap rule">
     <p class="cmd-head"><span class="pfx">trex.ai:~$</span> ./join.sh</p>
     <h2 class="join-title">{t("home.join.title")}</h2>
+    <div class="join-status-pill">
+      <span class="status-dot"></span>
+      <span>{t("home.join.status")}</span>
+    </div>
     <p class="muted join-body">{t("home.join.body")}</p>
+    <p class="muted join-note">{t("home.join.note")}</p>
     <a class="arrow" href={localizedUrl(lang, "contact")}>{t("home.join.cta")} →</a>
   </section>
 </BaseLayout>
@@ -263,14 +268,39 @@ const consoleData = {
   .join-title {
     margin-top: var(--s2);
   }
-  .join-body {
-    margin-top: var(--s2);
-    max-width: 52ch;
-  }
-  .join-title + .join-body {
+  .join-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     margin-top: 0.6rem;
+    padding: 0.2rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border: 1px solid var(--line-strong);
+    border-radius: 3px;
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f59e0b;
+    display: inline-block;
+  }
+  .join-body {
+    margin-top: 0.8rem;
+    max-width: 62ch;
+    line-height: 1.6;
+  }
+  .join-note {
+    margin-top: 0.5rem;
+    max-width: 62ch;
+    line-height: 1.6;
   }
   .section .arrow {
+    margin-top: 1rem;
+    display: inline-block;
     white-space: nowrap;
   }
 </style>
