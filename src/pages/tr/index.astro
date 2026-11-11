@@ -9,11 +9,8 @@ import type { Lang } from "../../i18n/ui";
 import { projects } from "../../data/projects";
 import { postsForLang, blogHref } from "../../lib/content";
 
-export function getStaticPaths() {
-  return locales.map((lang) => ({ params: { lang } }));
-}
 
-const lang = Astro.params.lang as Lang;
+const lang = "tr" as const;
 const t = useTranslations(lang);
 const tr = lang === "tr";
 

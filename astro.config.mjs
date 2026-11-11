@@ -9,19 +9,11 @@ import sitemap from "@astrojs/sitemap";
  *   https://mcavs.github.io/trex-lab-website/
  */
 const SITE = "https://mcavs.github.io";
-const BASE = "/trex-lab-website";
+const BASE = "/trex-ai-lab";
 
 export default defineConfig({
   site: SITE,
   base: BASE,
   trailingSlash: "ignore",
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en", "tr"],
-    routing: {
-      prefixDefaultLocale: true,
-      redirectToDefaultLocale: false,
-    },
-  },
   integrations: [sitemap()],
 });

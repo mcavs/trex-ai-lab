@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mcavs.github.io/trex-lab-website/sitemap-index.xml
+Sitemap: https://mcavs.github.io/trex-ai-lab/sitemap-index.xml

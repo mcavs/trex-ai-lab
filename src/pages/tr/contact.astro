@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations, locales } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+
+
+const lang = "tr" as const;
+const t = useTranslations(lang);
+
+const info = {
+  email: "mustafacavus@eskisehir.edu.tr",
+  address: {
+    en: "Department of Statistics, Eskişehir Technical University, Eskişehir, Türkiye",
+    tr: "İstatistik Bölümü, Eskişehir Teknik Üniversitesi, Eskişehir, Türkiye",
+  },
+  social: [
+    { label: "Google Scholar", href: "https://scholar.google.com/citations?user=I63d1WIAAAAJ&hl=en" },
+    { label: "GitHub", href: "https://github.com/mcavs" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/mustafacavusphd/" },
+  ].filter((s) => s.href),
+};
+---
+
+<BaseLayout lang={lang} title={t("contact.title")}>
+  <section class="section wrap">
+    <div class="narrow">
+      <p class="cmd-head"><span class="pfx">trex.ai:~$</span> contact --help</p>
+      <p class="muted intro">{t("contact.intro")}</p>
+
+      <dl class="info">
+        <dt>{t("contact.email")}</dt>
+        <dd><a href={`mailto:${info.email}`}>{info.email}</a></dd>
+
+        <dt>{t("contact.address")}</dt>
+        <dd>{lang === "tr" ? info.address.tr : info.address.en}</dd>
+
+        {
+          info.social.length > 0 && (
+            <>
+              <dt>{t("contact.social")}</dt>
+              <dd class="social">
+                {info.social.map((s) => (
+                  <a href={s.href} target="_blank" rel="noopener">
+                    {s.label}
+                  </a>
+                ))}
+              </dd>
+            </>
+          )
+        }
+      </dl>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 60ch;
+  }
+  .page-title {
+    margin-top: 0.4rem;
+  }
+  .intro {
+    font-size: 1.2rem;
+    margin-top: 0.8rem;
+  }
+  .info {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 1rem 2.5rem;
+  }
+  .info dt {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+    color: var(--accent-ink);
+    align-self: center;
+  }
+  .info dd {
+    margin: 0;
+  }
+  .social {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 560px) {
+    .info {
+      grid-template-columns: 1fr;
+      gap: 0.2rem 0;
+    }
+    .info dd {
+      margin-bottom: 0.8rem;
+    }
+  }
+</style>

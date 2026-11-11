@@ -1,40 +1,278 @@
 ---
-// Root entry: detect language and redirect to /en or /tr.
-// Static-host friendly — no server-side geo, uses stored choice then browser language.
-import { localizedUrl } from "../i18n/utils";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Console from "../components/Console.astro";
+import BlogCard from "../components/BlogCard.astro";
+import PaperItem from "../components/PaperItem.astro";
+import { useTranslations, localizedUrl, locales } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+import { projects } from "../data/projects";
+import { postsForLang, blogHref } from "../lib/content";
 
-const enUrl = localizedUrl("en", "");
-const trUrl = localizedUrl("tr", "");
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+const tr = lang === "tr";
+
+const allPapers = await getCollection("papers");
+const papersSorted = allPapers.sort((a, b) => b.data.year - a.data.year);
+const papers = papersSorted.slice(0, 3);
+
+const allPosts = await getCollection("blog");
+const posts = postsForLang(allPosts, lang).slice(0, 4);
+
+const team = await getCollection("team");
+const authorName = new Map(team.map((m) => [m.id, m.data.name]));
+const members = team
+  .filter((m) => m.data.group === "member")
+  .sort((a, b) => a.data.order - b.data.order);
+
+// ---- data for the interactive console ----
+const paperHref = (p: (typeof allPapers)[number]) =>
+  p.data.links?.arxiv ||
+  p.data.links?.doi ||
+  p.data.links?.openreview ||
+  p.data.links?.pdf ||
+  localizedUrl(lang, "papers");
+
+const consoleData = {
+  lang,
+  about: t("site.description"),
+  hint: tr
+    ? "bir komut yaz (ör. `help`) ya da aşağıdan tıkla."
+    : "type a command (e.g. `help`) or click one below.",
+  notFound: tr ? "komut bulunamadı. `help` yaz." : "command not found. type `help`.",
+  helpTitle: tr ? "komutlar:" : "available commands:",
+  help: [
+    { cmd: "whoami", desc: tr ? "lab hakkında" : "about the lab" },
+    { cmd: "projects", desc: tr ? "yürütülen projeler" : "research projects" },
+    { cmd: "papers", desc: tr ? "yayınlar  [--year YYYY]" : "publications  [--year YYYY]" },
+    { cmd: "team", desc: tr ? "ekip üyeleri" : "the people" },
+    { cmd: "contact", desc: tr ? "iletişim" : "get in touch" },
+    { cmd: "open <x>", desc: tr ? "sayfaya git" : "go to a page" },
+    { cmd: "lang", desc: tr ? "dili değiştir (EN)" : "switch language (TR)" },
+    { cmd: "clear", desc: tr ? "ekranı temizle" : "clear the screen" },
+  ],
+  sections: [
+    { name: "projects", url: localizedUrl(lang, "projects") },
+    { name: "papers", url: localizedUrl(lang, "papers") },
+    { name: "team", url: localizedUrl(lang, "team") },
+    { name: "contact", url: localizedUrl(lang, "contact") },
+  ],
+  projects: projects.map((p) => (tr ? p.title_tr : p.title_en)),
+  papers: papersSorted.slice(0, 8).map((p) => ({
+    label: p.data.title,
+    year: p.data.year,
+    href: paperHref(p),
+  })),
+  team: members.map((m) => ({
+    name: m.data.name,
+    role: tr ? m.data.role_tr : m.data.role_en,
+  })),
+  blog: postsForLang(allPosts, lang)
+    .slice(0, 6)
+    .map((b) => ({
+      title: b.data.title,
+      date: new Intl.DateTimeFormat(tr ? "tr-TR" : "en-US", {
+        year: "numeric",
+        month: "short",
+        day: "2-digit",
+      }).format(b.data.pubDate),
+      href: blogHref(b),
+    })),
+  contact: {
+    email: "mustafacavus@eskisehir.edu.tr",
+    links: [
+      { label: "Scholar", href: "https://scholar.google.com/citations?user=I63d1WIAAAAJ&hl=en" },
+      { label: "GitHub", href: "https://github.com/mcavs" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/mustafacavusphd/" },
+    ],
+  },
+  altLangHome: localizedUrl(lang === "en" ? "tr" : "en", ""),
+  altLangLabel: lang === "en" ? "Türkçe" : "English",
+};
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>trex.ai — Trustworthy & Explainable AI Lab</title>
-    <link rel="canonical" href={enUrl} />
-    <!-- Fallback for no-JS clients -->
-    <meta http-equiv="refresh" content={`0; url=${enUrl}`} />
-    <script is:inline define:vars={{ enUrl, trUrl }}>
-      (function () {
-        var target = enUrl;
-        try {
-          var stored = localStorage.getItem("lang");
-          if (stored === "tr") target = trUrl;
-          else if (stored === "en") target = enUrl;
-          else {
-            var nav = (navigator.language || "en").toLowerCase();
-            if (nav.indexOf("tr") === 0) target = trUrl;
-          }
-        } catch (e) {}
-        location.replace(target);
-      })();
-    </script>
-  </head>
-  <body>
-    <p style="font-family: sans-serif; padding: 2rem;">
-      Redirecting… <a href={enUrl}>English</a> · <a href={trUrl}>Türkçe</a>
-    </p>
-  </body>
-</html>
+<BaseLayout lang={lang}>
+  <section class="hero wrap">
+    <Console data={consoleData} />
+  </section>
+
+  <!-- projects -->
+  <section class="section wrap rule">
+    <div class="sec-head">
+      <p class="cmd-head"><span class="pfx">trex.ai:~$</span> ls projects/</p>
+      <a class="arrow" href={localizedUrl(lang, "projects")}>{t("home.projects.all")} →</a>
+    </div>
+    <ol class="index areas">
+      {
+        projects.map((proj, i) => (
+          <li class="area row">
+            <span class="prompt">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <div class="proj-meta-line">
+                {proj.code && <span class="badge code">{proj.code}</span>}
+                <span class="badge status">{tr ? proj.status_tr : proj.status_en}</span>
+                <span class="badge type">{tr ? proj.type_tr : proj.type_en}</span>
+              </div>
+              <h3 class="area-title">
+                <a href={localizedUrl(lang, "projects")} class="proj-link">{tr ? proj.title_tr : proj.title_en}</a>
+              </h3>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- papers -->
+  {
+    papers.length > 0 && (
+      <section class="section wrap rule">
+        <div class="sec-head">
+          <p class="cmd-head"><span class="pfx">trex.ai:~$</span> papers <span class="flag">| head -3</span></p>
+          <a class="arrow" href={localizedUrl(lang, "papers")}>{t("home.papers.all")} →</a>
+        </div>
+        {papers.map((paper) => <PaperItem paper={paper} lang={lang} showBlurb={false} />)}
+      </section>
+    )
+  }
+
+  <!-- blog (disabled for now) -->
+  {/*
+    posts.length > 0 && (
+      <section class="section wrap rule">
+        <div class="sec-head">
+          <p class="cmd-head"><span class="pfx">trex.ai:~$</span> tail -f blog/</p>
+          <a class="arrow" href={localizedUrl(lang, "blog")}>{t("home.blog.all")} →</a>
+        </div>
+        <div class="list">
+          {posts.map((post) => (
+            <BlogCard
+              post={post}
+              href={blogHref(post)}
+              authorName={authorName.get(post.data.author.id)}
+              lang={lang}
+            />
+          ))}
+        </div>
+      </section>
+    )
+  */}
+
+  <!-- team -->
+  {
+    members.length > 0 && (
+      <section class="section wrap rule">
+        <div class="sec-head">
+          <p class="cmd-head"><span class="pfx">trex.ai:~$</span> who</p>
+          <a class="arrow" href={localizedUrl(lang, "team")}>{t("home.team.all")} →</a>
+        </div>
+        <ul class="index who">
+          {members.map((m) => (
+            <li class="row who-row">
+              <span class="who-name">{m.data.name}</span>
+              <span class="muted">{tr ? m.data.role_tr : m.data.role_en}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <!-- join -->
+  <section class="section wrap rule">
+    <p class="cmd-head"><span class="pfx">trex.ai:~$</span> ./join.sh</p>
+    <h2 class="join-title">{t("home.join.title")}</h2>
+    <p class="muted join-body">{t("home.join.body")}</p>
+    <a class="arrow" href={localizedUrl(lang, "contact")}>{t("home.join.cta")} →</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding-block: clamp(var(--s4), 5vw, var(--s6));
+  }
+  .areas {
+    margin-top: var(--s2);
+  }
+  .area {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.2rem 1rem;
+    align-items: baseline;
+  }
+  .area .prompt {
+    font-weight: 700;
+  }
+  .area-title {
+    font-weight: 700;
+  }
+  .proj-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--line-strong);
+  }
+  .proj-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .proj-meta-line {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+  }
+  .badge {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    border: 1px solid var(--line-strong);
+  }
+  .badge.code {
+    background: var(--line);
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .badge.status {
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.3);
+  }
+  .badge.type {
+    color: var(--text-muted);
+  }
+  .area .muted {
+    grid-column: 2;
+    margin-top: 0.2rem;
+    max-width: 64ch;
+    font-size: 0.92rem;
+  }
+  .who {
+    margin-top: var(--s2);
+  }
+  .who-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem 1.5rem;
+    flex-wrap: wrap;
+  }
+  .who-name {
+    color: var(--text);
+    font-weight: 700;
+  }
+  .join-title {
+    margin-top: var(--s2);
+  }
+  .join-body {
+    margin-top: var(--s2);
+    max-width: 52ch;
+  }
+  .join-title + .join-body {
+    margin-top: 0.6rem;
+  }
+  .section .arrow {
+    white-space: nowrap;
+  }
+</style>

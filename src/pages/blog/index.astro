@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { useTranslations, locales } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
+import { postsForLang, blogHref } from "../../lib/content";
+
+
+const lang = "en" as const;
+const t = useTranslations(lang);
+
+const all = await getCollection("blog");
+const posts = postsForLang(all, lang);
+
+const team = await getCollection("team");
+const authorName = new Map(team.map((m) => [m.id, m.data.name]));
+---
+
+<BaseLayout lang={lang} title={t("blog.title")}>
+  <section class="section wrap">
+    <p class="cmd-head"><span class="pfx">trex.ai:~$</span> ls -lt blog/</p>
+    <div class="blog-list">
+      {
+        posts.map((post) => (
+          <BlogCard
+            post={post}
+            href={blogHref(post)}
+            authorName={authorName.get(post.data.author.id)}
+            lang={lang}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    margin-top: 0.4rem;
+  }
+  .blog-list {
+    margin-top: 2rem;
+  }
+</style>

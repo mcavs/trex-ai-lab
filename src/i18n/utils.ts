@@ -23,14 +23,19 @@ export function useTranslations(lang: Lang) {
 }
 
 /**
- * Build a base-aware, language-prefixed URL.
- *   localizedUrl("tr", "team")  ->  "/trex-lab-website/tr/team"
- *   localizedUrl("en", "")      ->  "/trex-lab-website/en"
+ * Build a base-aware URL.
+ *   localizedUrl("en", "")      ->  "/trex-ai-lab"
+ *   localizedUrl("en", "team")  ->  "/trex-ai-lab/team"
+ *   localizedUrl("tr", "")      ->  "/trex-ai-lab/tr"
+ *   localizedUrl("tr", "team")  ->  "/trex-ai-lab/tr/team"
  */
 export function localizedUrl(lang: Lang, path = ""): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   const clean = path.replace(/^\//, "").replace(/\/$/, "");
-  return clean ? `${base}/${lang}/${clean}` : `${base}/${lang}`;
+  if (lang === "en") {
+    return clean ? `${base}/${clean}` : base || "/";
+  }
+  return clean ? `${base}/tr/${clean}` : `${base}/tr`;
 }
 
 /** Same path in the other language (for the language toggle & hreflang). */
@@ -40,7 +45,10 @@ export function alternateLangUrl(url: URL, target: Lang): string {
     .replace(/^\/(en|tr)/, "")
     .replace(/^\//, "")
     .replace(/\/$/, "");
-  return rest ? `${base}/${target}/${rest}` : `${base}/${target}`;
+  if (target === "en") {
+    return rest ? `${base}/${rest}` : base || "/";
+  }
+  return rest ? `${base}/tr/${rest}` : `${base}/tr`;
 }
 
 export const locales: Lang[] = ["en", "tr"];
