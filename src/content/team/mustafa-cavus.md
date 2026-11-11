@@ -1,5 +1,5 @@
 ---
-name: Mustafa Çavuş
+name: Mustafa Cavus, Ph.D.
 role_en: Lab Head · Assoc. Prof. of Applied Statistics
 role_tr: Lab Yöneticisi · Doç. Dr., Uygulamalı İstatistik
 bio_en: >-
