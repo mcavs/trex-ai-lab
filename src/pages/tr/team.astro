@@ -2,9 +2,8 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import TeamCard from "../../components/TeamCard.astro";
-import { useTranslations, locales } from "../../i18n/utils";
-import type { Lang, UIKey } from "../../i18n/ui";
-
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/ui";
 
 const lang = "tr" as const;
 const t = useTranslations(lang);
@@ -12,32 +11,64 @@ const t = useTranslations(lang);
 const team = await getCollection("team");
 const sorted = team.sort((a, b) => a.data.order - b.data.order);
 
-const groups: { key: "member" | "collaborator" | "alumni"; title: UIKey }[] = [
-  { key: "member", title: "team.members" },
-  { key: "collaborator", title: "team.collaborators" },
-  { key: "alumni", title: "team.alumni" },
-];
+const members = sorted.filter((m) => m.data.group === "member");
+const alumni = sorted.filter((m) => m.data.group === "alumni");
 ---
 
 <BaseLayout lang={lang} title={t("team.title")}>
   <section class="section wrap">
     <p class="cmd-head"><span class="pfx">trex.ai:~$</span> who --all</p>
 
+    <!-- Active Members -->
     {
-      groups.map((g) => {
-        const members = sorted.filter((m) => m.data.group === g.key);
-        if (members.length === 0) return null;
-        return (
-          <div class="group">
-            <h2 class="group-title">// {t(g.title)}</h2>
-            <div class="team-grid">
-              {members.map((m) => (
-                <TeamCard member={m} lang={lang} />
-              ))}
-            </div>
+      members.length > 0 && (
+        <div class="group">
+          <h2 class="group-title">// {t("team.members")}</h2>
+          <div class="team-grid">
+            {members.map((m) => (
+              <TeamCard member={m} lang={lang} />
+            ))}
           </div>
-        );
-      })
+        </div>
+      )
+    }
+
+    <!-- Alumni Section -->
+    {
+      alumni.length > 0 && (
+        <div class="group alumni-group">
+          <h2 class="group-title">// {t("team.alumni")}</h2>
+          <ul class="alumni-list">
+            {alumni.map((a) => {
+              const linkedin = a.data.links?.linkedin;
+              return (
+                <li class="alumni-item">
+                  {linkedin ? (
+                    <a
+                      href={linkedin}
+                      target="_blank"
+                      rel="noopener"
+                      class="alumni-name-link"
+                    >
+                      <span class="dot">●</span>
+                      <span class="name">{a.data.name}</span>
+                      <span class="arrow">↗</span>
+                    </a>
+                  ) : (
+                    <span class="alumni-name">
+                      <span class="dot">●</span>
+                      <span class="name">{a.data.name}</span>
+                    </span>
+                  )}
+                  {a.data.period && (
+                    <span class="alumni-period">[{a.data.period}]</span>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )
     }
   </section>
 </BaseLayout>
@@ -58,5 +89,77 @@ const groups: { key: "member" | "collaborator" | "alumni"; title: UIKey }[] = [
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
     gap: 2.5rem 2rem;
+  }
+
+  /* Alumni Section Styling */
+  .alumni-group {
+    margin-top: 3.5rem;
+  }
+  .alumni-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: 480px;
+  }
+  .alumni-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .alumni-item:hover {
+    border-color: var(--line-strong);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .alumni-name-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .alumni-name-link .dot {
+    color: var(--accent);
+    font-size: 0.7em;
+  }
+  .alumni-name-link .arrow {
+    color: var(--accent);
+    font-size: 0.8em;
+    opacity: 0.7;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .alumni-name-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .alumni-name-link:hover .arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+  }
+  .alumni-name {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .alumni-period {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
   }
 </style>
