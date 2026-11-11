@@ -78,7 +78,7 @@ export const ui = {
     "projects.grant": "Grant",
 
     "contact.title": "Contact",
-    "contact.intro": "Get in touch with trex.ai (Trustworthy & Explainable AI Lab).",
+    "contact.intro": "trex.ai - Trustworthy & Explainable AI Lab",
     "contact.email": "Email",
     "contact.address": "Address",
     "contact.social": "Find us",
