@@ -1,29 +1,30 @@
 /* ===========================================================================
    trex.ai — CONSOLE / REPL
-   The site is a research terminal. Amber-phosphor aesthetic (not matrix-green),
-   warm near-black, one monospace voice. The homepage is a live command line;
-   every page reads like one continuous shell session.
+   Modern deep-slate & rose-violet / emerald palette harmonized with the
+   official trex.ai identity logo. Retains the sharp terminal/shell aesthetic.
    =========================================================================== */
 
 :root {
-  /* phosphor screen */
-  --bg: #0a0b0a;
-  --bg-2: #10120f;
-  --bg-3: #161814;
-  --text: #ded9c9; /* warm paper-white */
-  --text-muted: #847f70;
-  --line: rgba(222, 217, 201, 0.16);
-  --line-strong: rgba(222, 217, 201, 0.32);
+  /* deep slate-indigo screen background (harmonized with logo base #212226 / #17181c) */
+  --bg: #111216;
+  --bg-2: #18191f;
+  --bg-3: #20222a;
+  --text: #f0f2f5; /* clean crisp white */
+  --text-muted: #8e95a5;
+  --line: rgba(240, 242, 245, 0.12);
+  --line-strong: rgba(240, 242, 245, 0.25);
 
-  /* amber phosphor accent */
-  --accent: #ffb454;
-  --accent-ink: #ffc77a;
-  --accent-contrast: #0a0b0a;
-  --accent-wash: rgba(255, 180, 84, 0.12);
-  --accent-glow: 0 0 6px rgba(255, 180, 84, 0.35);
+  /* vibrant rose-magenta / violet accent from logo emblem */
+  --accent: #d85d9c;
+  --accent-ink: #e882b7;
+  --accent-contrast: #ffffff;
+  --accent-wash: rgba(216, 93, 156, 0.12);
+  --accent-glow: 0 0 8px rgba(216, 93, 156, 0.45);
 
-  /* a calm secondary for "ok / success" lines */
-  --ok: #9bd17a;
+  /* secondary emerald-mint accent from logo emblem */
+  --ok: #52b788;
+  --accent-alt: #48a97c;
+  --accent-alt-glow: 0 0 8px rgba(82, 183, 136, 0.45);
 
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-display: var(--font-mono);
