@@ -2,6 +2,7 @@
 import { localizedUrl, useTranslations } from "../i18n/utils";
 import type { Lang, UIKey } from "../i18n/ui";
 import LangToggle from "./LangToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
   lang: Lang;
@@ -63,6 +64,7 @@ function isActive(path: string) {
         ))
       }
       <span class="nav-sep" aria-hidden="true"></span>
+      <ThemeToggle />
       <LangToggle lang={lang} />
     </nav>
   </div>

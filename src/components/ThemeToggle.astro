@@ -1,0 +1,93 @@
+---
+// ThemeToggle.astro: Switch accent color between Data Green and Quantum Pink
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  class="theme-toggle"
+  aria-label="Toggle accent color (Data Green / Quantum Pink)"
+  title="Toggle accent color (Data Green / Quantum Pink)"
+>
+  <span class="swatch swatch-green" aria-hidden="true"></span>
+  <span class="sep" aria-hidden="true">/</span>
+  <span class="swatch swatch-pink" aria-hidden="true"></span>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    padding: 0.2rem 0.45rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    background: var(--accent-wash);
+  }
+  .theme-toggle:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .swatch {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    opacity: 0.4;
+  }
+  .swatch-green {
+    background: #4a9768;
+    box-shadow: 0 0 6px rgba(74, 151, 104, 0.5);
+  }
+  .swatch-pink {
+    background: #b84588;
+    box-shadow: 0 0 6px rgba(184, 69, 136, 0.5);
+  }
+  .sep {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* Active states depending on current theme */
+  :global(html:not([data-theme="pink"])) .swatch-green {
+    opacity: 1;
+    transform: scale(1.25);
+    box-shadow: 0 0 8px #4a9768;
+  }
+  :global(html[data-theme="pink"]) .swatch-pink {
+    opacity: 1;
+    transform: scale(1.25);
+    box-shadow: 0 0 8px #b84588;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initTheme() {
+      var btn = document.getElementById("theme-toggle");
+      if (!btn) return;
+      btn.onclick = function () {
+        var current = document.documentElement.getAttribute("data-theme");
+        var next = current === "pink" ? "green" : "pink";
+        if (next === "green") {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.removeItem("trex-theme");
+        } else {
+          document.documentElement.setAttribute("data-theme", "pink");
+          localStorage.setItem("trex-theme", "pink");
+        }
+      };
+    }
+    initTheme();
+    document.addEventListener("astro:after-swap", initTheme);
+  })();
+</script>

@@ -16,18 +16,18 @@
   --line: rgba(243, 245, 248, 0.1);
   --line-strong: rgba(243, 245, 248, 0.22);
 
-  /* Quantum Pink accent */
-  --accent: #b84588;
-  --accent-ink: #d463a5;
+  /* Primary Accent: Default to Data Green */
+  --accent: #4a9768;
+  --accent-ink: #5cb880;
   --accent-contrast: #ffffff;
-  --accent-wash: rgba(184, 69, 136, 0.12);
-  --accent-glow: 0 0 10px rgba(184, 69, 136, 0.45);
+  --accent-wash: rgba(74, 151, 104, 0.12);
+  --accent-glow: 0 0 10px rgba(74, 151, 104, 0.45);
 
-  /* Data Green secondary / success accent */
+  /* Secondary Accent: Quantum Pink */
   --ok: #4a9768;
-  --accent-alt: #4a9768;
-  --accent-alt-ink: #5cb880;
-  --accent-alt-glow: 0 0 10px rgba(74, 151, 104, 0.45);
+  --accent-alt: #b84588;
+  --accent-alt-ink: #d463a5;
+  --accent-alt-glow: 0 0 10px rgba(184, 69, 136, 0.45);
 
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-display: var(--font-mono);
@@ -43,6 +43,19 @@
 
   --wrap: 78rem;
   color-scheme: dark;
+}
+
+/* Quantum Pink Theme override */
+html[data-theme="pink"] {
+  --accent: #b84588;
+  --accent-ink: #d463a5;
+  --accent-contrast: #ffffff;
+  --accent-wash: rgba(184, 69, 136, 0.12);
+  --accent-glow: 0 0 10px rgba(184, 69, 136, 0.45);
+
+  --accent-alt: #4a9768;
+  --accent-alt-ink: #5cb880;
+  --accent-alt-glow: 0 0 10px rgba(74, 151, 104, 0.45);
 }
 
 *,
