@@ -1,7 +1,7 @@
 ---
 name: Mustafa Cavus, Ph.D.
-role_en: Lab Head · Assoc. Prof. of XAI
-role_tr: Lab Yöneticisi · Doç. Dr., Açıklanabilir Yapay Zeka
+role_en: Lab Head
+role_tr: Lab Yöneticisi
 bio_en: >-
   Mustafa Cavus is an Associate Professor of Applied Statistics and XAI in the Department
   of Statistics at Eskişehir Technical University. His work focuses on explainable and trustworthy machine learning, with
