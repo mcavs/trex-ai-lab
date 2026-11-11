@@ -54,14 +54,14 @@ const chips = ["help", "whoami", "projects", "papers", "team", "blog", "contact"
 
     <div class="term-out" id="term-out" role="log" aria-live="polite">
       <!-- server-rendered initial transcript (no-JS + SEO) -->
-      <div class="ln"><span class="prompt">trex:~$</span> whoami</div>
+      <div class="ln"><span class="prompt">trex.ai:~$</span> whoami</div>
       <div class="ln out">{data.about}</div>
       <div class="ln"></div>
       <div class="ln"><span class="muted">{data.hint}</span></div>
     </div>
 
     <form class="term-in" id="term-form" autocomplete="off">
-      <label class="prompt" for="term-input">trex:~$</label>
+      <label class="prompt" for="term-input">trex.ai:~$</label>
       <input
         id="term-input"
         class="term-input"
@@ -338,7 +338,7 @@ const chips = ["help", "whoami", "projects", "papers", "team", "blog", "contact"
 
     function run(raw) {
       var cmd = (raw || "").trim();
-      line('<span class="prompt">trex:~$</span> ' + esc(cmd));
+      line('<span class="prompt">trex.ai:~$</span> ' + esc(cmd));
       if (!cmd) {
         scroll();
         return;
