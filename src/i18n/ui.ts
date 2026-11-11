@@ -75,7 +75,7 @@ export const ui = {
     "projects.intro":
       "Funded and active research projects conducted at trex.ai (Trustworthy & Explainable AI Lab):",
     "projects.status": "Status",
-    "projects.grant": "Grant / Type",
+    "projects.grant": "Grant",
 
     "contact.title": "Contact",
     "contact.intro": "Get in touch with trex.ai (Trustworthy & Explainable AI Lab).",
@@ -153,7 +153,7 @@ export const ui = {
     "projects.intro":
       "trex.ai (Trustworthy & Explainable AI Lab) bünyesinde yürütülen ve desteklenen güncel araştırma projeleri:",
     "projects.status": "Durum",
-    "projects.grant": "Tür / Destek",
+    "projects.grant": "Destek",
 
     "contact.title": "İletişim",
     "contact.intro": "trex.ai (Trustworthy & Explainable AI Lab) ile iletişime geçin.",
