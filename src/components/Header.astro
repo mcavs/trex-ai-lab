@@ -28,6 +28,13 @@ function isActive(path: string) {
 <header class="site-header">
   <div class="wrap bar">
     <a class="brand" href={localizedUrl(lang, "")} aria-label="trex.ai — Trustworthy & Explainable AI Lab">
+      <img
+        src={`${import.meta.env.BASE_URL}/logo-icon.png`}
+        alt="trex.ai logo"
+        class="brand-logo"
+        width="28"
+        height="24"
+      />
       <span class="prompt">trex</span><span class="at">@</span><span class="host">ai</span><span class="prompt">:~$</span>
       <span class="brand-cursor" aria-hidden="true"></span>
     </a>
@@ -80,12 +87,20 @@ function isActive(path: string) {
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.1rem;
+    gap: 0.45rem;
     font-family: var(--font-mono);
     font-size: 0.95rem;
     font-weight: 700;
     text-decoration: none;
     border-bottom: none;
+  }
+  .brand-logo {
+    display: inline-block;
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 4px rgba(255, 180, 84, 0.25));
   }
   .brand .prompt {
     color: var(--accent);
