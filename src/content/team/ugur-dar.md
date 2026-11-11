@@ -11,6 +11,16 @@ bio_tr: >-
 photo: ../../assets/team/ugur-dar.jpg
 group: member
 order: 2
+projects:
+  - code: "ENFIELD"
+    label: "Horizon Europe"
+papers:
+  - code: "JOSS '26"
+    label: "datadriftR"
+    href: "https://doi.org/10.21105/joss.09481"
+  - code: "FGCS '26"
+    label: "XAI to MLOps"
+    href: "https://arxiv.org/abs/2412.11308"
 links:
   github: https://github.com/ugurdar
   linkedin: https://www.linkedin.com/in/ugurdar/

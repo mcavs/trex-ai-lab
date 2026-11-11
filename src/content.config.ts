@@ -13,6 +13,12 @@ const links = z
   })
   .optional();
 
+const badgeItem = z.object({
+  code: z.string(),
+  label: z.string().optional(),
+  href: z.string().optional(),
+});
+
 const team = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/team" }),
   schema: ({ image }) =>
@@ -26,6 +32,8 @@ const team = defineCollection({
       group: z.enum(["member", "collaborator", "alumni"]).default("member"),
       order: z.number().default(100),
       links,
+      projects: z.array(badgeItem).optional(),
+      papers: z.array(badgeItem).optional(),
       joined: z.coerce.date().optional(),
       left: z.coerce.date().optional(),
     }),

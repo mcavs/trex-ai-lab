@@ -12,6 +12,8 @@ const d = member.data;
 const role = lang === "tr" ? d.role_tr : d.role_en;
 const bio = lang === "tr" ? d.bio_tr : d.bio_en;
 const l = d.links ?? {};
+const projects = d.projects ?? [];
+const papers = d.papers ?? [];
 ---
 
 <article class="card member">
@@ -29,6 +31,49 @@ const l = d.links ?? {};
     <h3 class="name">{d.name}</h3>
     <p class="role">{role}</p>
     <p class="bio muted">{bio}</p>
+
+    {projects.length > 0 && (
+      <div class="badge-block">
+        <span class="badge-title">// {lang === "tr" ? "PROJELER" : "PROJECTS"}</span>
+        <div class="badge-list">
+          {projects.map((p) => (
+            p.href ? (
+              <a href={p.href} class="badge project-badge" target="_blank" rel="noopener">
+                <span class="b-code">{p.code}</span>
+                {p.label && <span class="b-label">{p.label}</span>}
+              </a>
+            ) : (
+              <span class="badge project-badge">
+                <span class="b-code">{p.code}</span>
+                {p.label && <span class="b-label">{p.label}</span>}
+              </span>
+            )
+          ))}
+        </div>
+      </div>
+    )}
+
+    {papers.length > 0 && (
+      <div class="badge-block">
+        <span class="badge-title">// {lang === "tr" ? "YAYINLAR" : "PAPERS"}</span>
+        <div class="badge-list">
+          {papers.map((p) => (
+            p.href ? (
+              <a href={p.href} class="badge paper-badge" target="_blank" rel="noopener">
+                <span class="b-code">{p.code}</span>
+                {p.label && <span class="b-label">{p.label}</span>}
+              </a>
+            ) : (
+              <span class="badge paper-badge">
+                <span class="b-code">{p.code}</span>
+                {p.label && <span class="b-label">{p.label}</span>}
+              </span>
+            )
+          ))}
+        </div>
+      </div>
+    )}
+
     <div class="links">
       {l.website && <a href={l.website} target="_blank" rel="noopener" aria-label={`${d.name} website`}>Web</a>}
       {l.scholar && <a href={l.scholar} target="_blank" rel="noopener" aria-label={`${d.name} Google Scholar`}>Scholar</a>}
@@ -64,6 +109,9 @@ const l = d.links ?? {};
   }
   .body {
     padding: 0.8rem 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
   .name {
     font-family: var(--font-mono);
@@ -84,16 +132,83 @@ const l = d.links ?? {};
     margin-top: 0.25rem;
   }
   .bio {
-    font-size: 0.9rem;
-    line-height: 1.55;
+    font-size: 0.88rem;
+    line-height: 1.5;
     margin-top: 0.6rem;
     color: var(--text-muted);
   }
+
+  /* Badge Sections */
+  .badge-block {
+    margin-top: 0.75rem;
+    padding-top: 0.55rem;
+    border-top: 1px dashed var(--line);
+  }
+  .badge-title {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--text-dim, #717888);
+    margin-bottom: 0.4rem;
+  }
+  .badge-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    line-height: 1.2;
+    padding: 0.22rem 0.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .project-badge {
+    background: rgba(74, 151, 104, 0.1);
+    border: 1px solid rgba(74, 151, 104, 0.35);
+    color: #4a9768;
+  }
+  :root[data-theme="pink"] .project-badge {
+    background: rgba(184, 69, 136, 0.1);
+    border-color: rgba(184, 69, 136, 0.35);
+    color: #b84588;
+  }
+  .paper-badge {
+    background: rgba(184, 69, 136, 0.1);
+    border: 1px solid rgba(184, 69, 136, 0.35);
+    color: #b84588;
+  }
+  :root[data-theme="pink"] .paper-badge {
+    background: rgba(74, 151, 104, 0.1);
+    border-color: rgba(74, 151, 104, 0.35);
+    color: #4a9768;
+  }
+  a.badge:hover {
+    transform: translateY(-1px);
+    border-color: currentColor;
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .b-code {
+    font-weight: 700;
+  }
+  .b-label {
+    opacity: 0.8;
+    font-size: 0.9em;
+  }
+
   .links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem 1rem;
-    margin-top: 0.8rem;
+    margin-top: auto;
+    padding-top: 0.9rem;
   }
   .links a {
     font-size: 0.82rem;

@@ -9,6 +9,9 @@ bio_tr: >-
 photo: ../../assets/team/yigitcan-yardimci.jpg
 group: member
 order: 3
+projects:
+  - code: "TÜBİTAK 126E831"
+    label: "1002A"
 links:
   github: https://github.com/Yigitcanyardimci
   linkedin: https://www.linkedin.com/in/yigitcanyardimci/
