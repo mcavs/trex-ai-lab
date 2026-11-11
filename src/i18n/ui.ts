@@ -13,10 +13,11 @@ export type Lang = keyof typeof languages;
  */
 export const ui = {
   en: {
-    "site.name": "Discern Lab",
-    "site.tagline": "A clear view into explainable AI.",
+    "site.name": "trex.ai",
+    "site.fullName": "Trustworthy & Explainable AI Lab",
+    "site.tagline": "Trustworthy & Explainable AI Lab",
     "site.description":
-      "Discern Lab researches explainable and trustworthy artificial intelligence — making model decisions transparent, faithful, and accountable.",
+      "Trustworthy & Explainable AI Lab (trex.ai) researches explainable and trustworthy artificial intelligence — making model decisions transparent, faithful, and accountable.",
 
     "nav.home": "Home",
     "nav.team": "Team",
@@ -74,7 +75,7 @@ export const ui = {
       "We work on making AI systems interpretable, faithful, and trustworthy. Our main directions:",
 
     "contact.title": "Contact",
-    "contact.intro": "Get in touch with Discern Lab.",
+    "contact.intro": "Get in touch with trex.ai (Trustworthy & Explainable AI Lab).",
     "contact.email": "Email",
     "contact.address": "Address",
     "contact.social": "Find us",
@@ -87,10 +88,11 @@ export const ui = {
     "404.home": "Go home",
   },
   tr: {
-    "site.name": "Discern Lab",
-    "site.tagline": "Açıklanabilir yapay zekaya berrak bir bakış.",
+    "site.name": "trex.ai",
+    "site.fullName": "Trustworthy & Explainable AI Lab",
+    "site.tagline": "Trustworthy & Explainable AI Lab",
     "site.description":
-      "Discern Lab, açıklanabilir ve güvenilir yapay zeka üzerine araştırma yapar — model kararlarını şeffaf, sadık ve hesap verebilir kılar.",
+      "Trustworthy & Explainable AI Lab (trex.ai), güvenilir ve açıklanabilir yapay zeka üzerine araştırma yapar — model kararlarını şeffaf, sadık ve hesap verebilir kılar.",
 
     "nav.home": "Anasayfa",
     "nav.team": "Ekip",
@@ -148,7 +150,7 @@ export const ui = {
       "Yapay zeka sistemlerini yorumlanabilir, sadık ve güvenilir kılmaya çalışıyoruz. Ana yönlerimiz:",
 
     "contact.title": "İletişim",
-    "contact.intro": "Discern Lab ile iletişime geçin.",
+    "contact.intro": "trex.ai (Trustworthy & Explainable AI Lab) ile iletişime geçin.",
     "contact.email": "E-posta",
     "contact.address": "Adres",
     "contact.social": "Bizi bulun",

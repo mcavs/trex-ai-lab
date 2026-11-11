@@ -105,7 +105,7 @@ const consoleData = {
 
   <!-- research -->
   <section class="section wrap rule">
-    <p class="cmd-head"><span class="pfx">discern:~$</span> ls research/</p>
+    <p class="cmd-head"><span class="pfx">trex:~$</span> ls research/</p>
     <ol class="index areas">
       {
         researchAreas.map((area, i) => (
@@ -126,7 +126,7 @@ const consoleData = {
     papers.length > 0 && (
       <section class="section wrap rule">
         <div class="sec-head">
-          <p class="cmd-head"><span class="pfx">discern:~$</span> papers <span class="flag">| head -3</span></p>
+          <p class="cmd-head"><span class="pfx">trex:~$</span> papers <span class="flag">| head -3</span></p>
           <a class="arrow" href={localizedUrl(lang, "papers")}>{t("home.papers.all")} →</a>
         </div>
         {papers.map((paper) => <PaperItem paper={paper} lang={lang} />)}
@@ -139,7 +139,7 @@ const consoleData = {
     posts.length > 0 && (
       <section class="section wrap rule">
         <div class="sec-head">
-          <p class="cmd-head"><span class="pfx">discern:~$</span> tail -f blog/</p>
+          <p class="cmd-head"><span class="pfx">trex:~$</span> tail -f blog/</p>
           <a class="arrow" href={localizedUrl(lang, "blog")}>{t("home.blog.all")} →</a>
         </div>
         <div class="list">
@@ -161,7 +161,7 @@ const consoleData = {
     members.length > 0 && (
       <section class="section wrap rule">
         <div class="sec-head">
-          <p class="cmd-head"><span class="pfx">discern:~$</span> who</p>
+          <p class="cmd-head"><span class="pfx">trex:~$</span> who</p>
           <a class="arrow" href={localizedUrl(lang, "team")}>{t("home.team.all")} →</a>
         </div>
         <ul class="index who">
@@ -178,7 +178,7 @@ const consoleData = {
 
   <!-- join -->
   <section class="section wrap rule">
-    <p class="cmd-head"><span class="pfx">discern:~$</span> ./join.sh</p>
+    <p class="cmd-head"><span class="pfx">trex:~$</span> ./join.sh</p>
     <h2 class="join-title">{t("home.join.title")}</h2>
     <p class="muted join-body">{t("home.join.body")}</p>
     <a class="arrow" href={localizedUrl(lang, "contact")}>{t("home.join.cta")} →</a>

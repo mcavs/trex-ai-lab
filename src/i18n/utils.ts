@@ -24,8 +24,8 @@ export function useTranslations(lang: Lang) {
 
 /**
  * Build a base-aware, language-prefixed URL.
- *   localizedUrl("tr", "team")  ->  "/xmu_lab/tr/team"
- *   localizedUrl("en", "")      ->  "/xmu_lab/en"
+ *   localizedUrl("tr", "team")  ->  "/trex-lab-website/tr/team"
+ *   localizedUrl("en", "")      ->  "/trex-lab-website/en"
  */
 export function localizedUrl(lang: Lang, path = ""): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");

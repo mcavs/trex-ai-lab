@@ -1,5 +1,5 @@
 <!--
-Thanks for contributing to Discern Lab! / Discern Lab'a katkın için teşekkürler!
+Thanks for contributing to trex.ai! / trex.ai'a katkın için teşekkürler!
 Pick the type of change and fill in the checklist.
 -->
 

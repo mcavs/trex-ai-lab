@@ -1,6 +1,6 @@
 ---
-title: "Discern Lab'a Hoş Geldiniz"
-description: "Açıklanabilir ve güvenilir yapay zekaya adanmış bir labı neden kurduk."
+title: "trex.ai'a Hoş Geldiniz"
+description: "Güvenilir ve Açıklanabilir Yapay Zeka Laboratuvarı'nı (trex.ai) neden kurduk."
 pubDate: 2026-01-15
 author: mustafa-cavus
 cover: ../../../assets/blog/welcome.jpg
@@ -9,7 +9,7 @@ cardSize: featured
 translationId: welcome
 ---
 
-**Discern Lab'ı** basit bir inançla kurduk: makine öğrenmesi giderek daha çok
+**trex.ai'ı (Trustworthy & Explainable AI Lab)** basit bir inançla kurduk: makine öğrenmesi giderek daha çok
 yüksek riskli kararı şekillendirdikçe, bir modelin nasıl ve neden karar verdiğini
 *ayırt edebilmek*, tahminin kendisi kadar önemli hale geliyor.
 

@@ -1,5 +1,5 @@
 /* ===========================================================================
-   Discern Lab — CONSOLE / REPL
+   trex.ai — CONSOLE / REPL
    The site is a research terminal. Amber-phosphor aesthetic (not matrix-green),
    warm near-black, one monospace voice. The homepage is a live command line;
    every page reads like one continuous shell session.
@@ -104,7 +104,7 @@ h3 {
   font-weight: 700;
 }
 
-/* a heading rendered as a shell prompt:  discern:~/team$ ls */
+/* a heading rendered as a shell prompt:  trex:~/team$ ls */
 .cmd-head {
   font-size: clamp(1.05rem, 2vw, 1.4rem);
   font-weight: 400;

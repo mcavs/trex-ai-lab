@@ -27,7 +27,7 @@ interface Props {
   data: ConsoleData;
   title?: string;
 }
-const { data, title = "discern-lab — bash — 80×24" } = Astro.props;
+const { data, title = "trex.ai — bash — 80×24" } = Astro.props;
 const chips = ["help", "whoami", "research", "papers", "team", "blog", "contact"];
 ---
 
@@ -40,14 +40,14 @@ const chips = ["help", "whoami", "research", "papers", "team", "blog", "contact"
   <div class="term-screen">
     <div class="term-out" id="term-out" role="log" aria-live="polite">
       <!-- server-rendered initial transcript (no-JS + SEO) -->
-      <div class="ln"><span class="prompt">discern:~$</span> whoami</div>
+      <div class="ln"><span class="prompt">trex:~$</span> whoami</div>
       <div class="ln out">{data.about}</div>
       <div class="ln"></div>
       <div class="ln"><span class="muted">{data.hint}</span></div>
     </div>
 
     <form class="term-in" id="term-form" autocomplete="off">
-      <label class="prompt" for="term-input">discern:~$</label>
+      <label class="prompt" for="term-input">trex:~$</label>
       <input
         id="term-input"
         class="term-input"
@@ -291,7 +291,7 @@ const chips = ["help", "whoami", "research", "papers", "team", "blog", "contact"
 
     function run(raw) {
       var cmd = (raw || "").trim();
-      line('<span class="prompt">discern:~$</span> ' + esc(cmd));
+      line('<span class="prompt">trex:~$</span> ' + esc(cmd));
       if (!cmd) {
         scroll();
         return;

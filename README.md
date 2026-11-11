@@ -1,10 +1,10 @@
-# Discern Lab
+# trex.ai — Trustworthy & Explainable AI Lab
 
-Bilingual (English / Turkish) website for **Discern Lab** — research on
+Bilingual (English / Turkish) website for **trex.ai** (**Trustworthy & Explainable AI Lab**) — research on
 explainable & trustworthy AI. Built with [Astro](https://astro.build), deployed
 to GitHub Pages, with automatic dark/light mode and PR-based content.
 
-> _A clear view into explainable AI._
+> _Trustworthy & Explainable AI Lab_
 
 ## Features
 
@@ -65,18 +65,14 @@ deployment → Source = **GitHub Actions**.
 The site is configured in `astro.config.mjs`:
 
 ```js
-const SITE = "https://ugurdar.github.io";
-const BASE = "/xmu_lab";   // must match the repo name
+const SITE = "https://mcavs.github.io";
+const BASE = "/trex-lab-website";   // matches the repo name
 ```
 
-- **Rename the repo to `discern-lab`?** Set `BASE = "/discern-lab"` and update the
-  `Sitemap:` line in `public/robots.txt`.
-- **Use a custom domain** (e.g. `discernlab.ai`)? Set `BASE = "/"`, set
-  `SITE = "https://discernlab.ai"`, add `public/CNAME` containing the domain, and
+- **Use a custom domain** (e.g. `trex.ai`)? Set `BASE = "/"`, set
+  `SITE = "https://trex.ai"`, add `public/CNAME` containing the domain, and
   configure the domain under Settings → Pages.
-- **Want clean root URLs without a custom domain?** Rename the repo to
-  `ugurdar.github.io` and set `BASE = "/"`.
 
 ## License
 
-Code is MIT licensed (see [LICENSE](./LICENSE)). Content (text, images) © Discern Lab.
+Code is MIT licensed (see [LICENSE](./LICENSE)). Content (text, images) © trex.ai (Trustworthy & Explainable AI Lab).

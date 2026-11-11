@@ -1,9 +1,9 @@
 {
-  "name": "discern-lab",
+  "name": "trex-lab-website",
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "description": "Discern Lab — bilingual (EN/TR) research lab website. Explainable & trustworthy AI.",
+  "description": "trex.ai (Trustworthy & Explainable AI Lab) — bilingual (EN/TR) research lab website.",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

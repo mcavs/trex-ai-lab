@@ -1,6 +1,6 @@
 ---
-title: "Welcome to Discern Lab"
-description: "Why we started a lab dedicated to explainable and trustworthy AI."
+title: "Welcome to trex.ai"
+description: "Why we started Trustworthy & Explainable AI Lab (trex.ai)."
 pubDate: 2026-01-15
 author: mustafa-cavus
 cover: ../../../assets/blog/welcome.jpg
@@ -9,8 +9,8 @@ cardSize: featured
 translationId: welcome
 ---
 
-We started **Discern Lab** with a simple conviction: as machine learning shapes
-more high-stakes decisions, the ability to *discern* how and why a model decides
+We started **trex.ai (Trustworthy & Explainable AI Lab)** with a simple conviction: as machine learning shapes
+more high-stakes decisions, the ability to inspect how and why a model decides
 becomes as important as the prediction itself.
 
 ## What we work on

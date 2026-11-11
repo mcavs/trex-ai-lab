@@ -5,15 +5,11 @@ import sitemap from "@astrojs/sitemap";
 /**
  * GitHub Pages deployment config.
  *
- * The site is currently served from the `xmu_lab` repo, i.e.
- *   https://ugurdar.github.io/xmu_lab/
- *
- * If you rename the repo to `discern-lab`, change BASE to "/discern-lab".
- * If you move to a custom domain (e.g. discernlab.ai), set BASE to "/" and
- * add `public/CNAME` with the domain.
+ * The site is served from the `trex-lab-website` repo, i.e.
+ *   https://mcavs.github.io/trex-lab-website/
  */
-const SITE = "https://ugurdar.github.io";
-const BASE = "/xmu_lab";
+const SITE = "https://mcavs.github.io";
+const BASE = "/trex-lab-website";
 
 export default defineConfig({
   site: SITE,
