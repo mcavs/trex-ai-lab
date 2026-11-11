@@ -1,30 +1,33 @@
 /* ===========================================================================
    trex.ai — CONSOLE / REPL
-   Modern deep-slate & rose-violet / emerald palette harmonized with the
-   official trex.ai identity logo. Retains the sharp terminal/shell aesthetic.
+   Harmonized with the official trex.ai brand palette:
+   - Midnight Black (deep black/dark slate background)
+   - Quantum Pink (vibrant tech-pink / magenta accent)
+   - Data Green (crisp emerald-mint secondary / success accent)
    =========================================================================== */
 
 :root {
-  /* deep slate-indigo screen background (harmonized with logo base #212226 / #17181c) */
-  --bg: #111216;
-  --bg-2: #18191f;
-  --bg-3: #20222a;
-  --text: #f0f2f5; /* clean crisp white */
-  --text-muted: #8e95a5;
-  --line: rgba(240, 242, 245, 0.12);
-  --line-strong: rgba(240, 242, 245, 0.25);
+  /* Midnight Black background & elevated layers */
+  --bg: #0d0e12;
+  --bg-2: #14151b;
+  --bg-3: #1c1d25;
+  --text: #f3f5f8; /* clean crisp white */
+  --text-muted: #8b92a3;
+  --line: rgba(243, 245, 248, 0.1);
+  --line-strong: rgba(243, 245, 248, 0.22);
 
-  /* vibrant rose-magenta / violet accent from logo emblem */
-  --accent: #d85d9c;
-  --accent-ink: #e882b7;
+  /* Quantum Pink accent */
+  --accent: #b84588;
+  --accent-ink: #d463a5;
   --accent-contrast: #ffffff;
-  --accent-wash: rgba(216, 93, 156, 0.12);
-  --accent-glow: 0 0 8px rgba(216, 93, 156, 0.45);
+  --accent-wash: rgba(184, 69, 136, 0.12);
+  --accent-glow: 0 0 10px rgba(184, 69, 136, 0.45);
 
-  /* secondary emerald-mint accent from logo emblem */
-  --ok: #52b788;
-  --accent-alt: #48a97c;
-  --accent-alt-glow: 0 0 8px rgba(82, 183, 136, 0.45);
+  /* Data Green secondary / success accent */
+  --ok: #4a9768;
+  --accent-alt: #4a9768;
+  --accent-alt-ink: #5cb880;
+  --accent-alt-glow: 0 0 10px rgba(74, 151, 104, 0.45);
 
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-display: var(--font-mono);
