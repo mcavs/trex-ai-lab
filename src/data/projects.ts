@@ -15,30 +15,7 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  {
-    id: "predictive-multiplicity-tunability",
-    code: "125E452",
-    status_en: "Active",
-    status_tr: "Yürürlükte",
-    type_en: "TÜBİTAK 1002 - Rapid Support",
-    type_tr: "TÜBİTAK 1002 - Hızlı Destek (1002-A)",
-    funding_en: "TÜBİTAK 1002-A (Grant No: 125E452)",
-    funding_tr: "TÜBİTAK 1002-A Hızlı Destek (Proje No: 125E452, Geçici No: 357820)",
-    title_tr: "Regresyon Ve Sınıflandırma Modellerinde Tahmin Tutarsızlığı Ve Ayarlanabilirlik: Güvenilir Makine Öğrenmesinde Hiperparametre Seçiminin Rolü",
-    title_en: "Predictive Multiplicity and Tunability in Regression and Classification Models: The Role of Hyperparameter Selection in Trustworthy Machine Learning",
-    desc_tr: `Makine öğrenmesi modellerinin güvenilirliği, yalnızca genel doğruluk gibi ortalama performans ölçütleriyle değil, aynı zamanda bireysel tahminlerdeki tutarlılıkla da değerlendirilmelidir. Bu bağlamda "tahmin tutarsızlığı" (predictive multiplicity), aynı veri kümesi üzerinde eğitilen modellerin, aynı girdilere farklı çıktılar üretmesi şeklinde tanımlanmakta ve karar verme süreçlerinde önemli belirsizlikler yaratmaktadır. Bu durum; kredi skorlama, işe alım ve tıbbi tanı gibi yüksek riskli uygulamalarda ciddi sonuçlar doğurabilir.
-
-Öte yandan, hiperparametreler bir modelin tahmin gücü ve davranışları üzerinde doğrudan etkilidir. Ancak hiperparametre optimizasyonu süreci genellikle yalnızca ortalama başarım üzerinden yürütülmektedir. Bu proje, hiperparametre seçimlerinin yalnızca model başarımı değil, aynı zamanda tahmin tutarlılığı üzerindeki etkilerini sistematik biçimde incelemeyi amaçlamaktadır. Bu amaçla hem sınıflandırma hem regresyon problemleri üzerinde çalışılacak; çeşitli modeller (örneğin, rastgele orman, destek vektör makineleri, k-en yakın komşu) ve farklı hiperparametre kombinasyonlarıyla yapılan deneyler sonucunda, modellerin "ayarlanabilirliği" (tunability) ile "tahmin tutarsızlığı" arasındaki ilişkiler analiz edilecektir.
-
-Projenin özgün yönü, makine öğrenmesinde genellikle göz ardı edilen tahmin tutarsızlığı kavramını hiperparametre seçimi bağlamında değerlendirmesidir. Ayrıca, bireysel tahminlerdeki kararsızlıkların modellenmesi için istatistiksel yöntemler ve açıklanabilir yapay zekâ araçları kullanılacaktır. Bu analizler sonucunda, model geliştiriciler için hiperparametre seçimi yaparken sadece doğruluk değil, aynı zamanda bireysel düzeyde güvenilirlik sağlayacak kriterlerin geliştirilmesi hedeflenmektedir.
-
-Proje çıktılarının, hem akademik literatüre katkı sağlaması hem de uygulayıcılar için karar destek sistemlerinin daha güvenilir şekilde inşa edilmesine yardımcı olması beklenmektedir.`,
-    desc_en: `The trustworthiness of machine learning models must be evaluated not only through aggregate performance metrics like overall accuracy, but also through consistency in individual predictions. In this context, "predictive multiplicity" refers to the phenomenon where equally well-performing models trained on the same data yield conflicting predictions for the same individual instances, introducing substantial uncertainty into decision-making. This carries profound risks in high-stakes domains such as credit scoring, hiring, and medical diagnostics.
-
-Hyperparameters directly govern a model's predictive capacity and behavior; however, hyperparameter optimization is almost universally guided solely by aggregate performance. This project systematically investigates the impact of hyperparameter selection on predictive consistency alongside accuracy. Covering both classification and regression setups across diverse model families (e.g., Random Forests, Support Vector Machines, k-Nearest Neighbors), the study analyzes the intricate relationship between model "tunability" and "predictive multiplicity".
-
-The project uniquely bridges hyperparameter tuning with predictive multiplicity using statistical modeling and explainable AI (XAI) frameworks to formulate reliable tuning criteria that safeguard individual-level reliability without sacrificing accuracy.`,
-  },
+  // 1. (Önceki 2. Proje): 126E831
   {
     id: "partial-dependence-rashomon",
     code: "126E831",
@@ -50,21 +27,11 @@ The project uniquely bridges hyperparameter tuning with predictive multiplicity 
     funding_tr: "TÜBİTAK 1002-A Hızlı Destek (Proje No: 126E831, Geçici No: 405565)",
     title_tr: "Kısmi Bağımlılık Temelli Açıklama Yöntemlerinin Güvenilirliğinin Karşılaştırmalı Değerlendirilmesi Ve Rashomon Perspektifi İle İyileştirilmesi",
     title_en: "Comparative Evaluation of the Reliability of Partial Dependence-Based Explanation Methods and Enhancement via the Rashomon Perspective",
-    desc_tr: `Açıklanabilir yapay zekâ araştırmalarında Partial Dependence Plots (PDP) yöntemi ile türevleri olan Individual Conditional Expectation (ICE), Accumulated Local Effects (ALE), Differential Accumulated Local Effects (DALE) ve Robust and Heterogeneity-Aware Accumulated Local Effects (RHALE), karmaşık makine öğrenmesi modellerinin tahmin mekanizmalarını anlamak ve değişken etkilerini görselleştirmek amacıyla yaygın olarak kullanılmaktadır. Ancak bu yöntemler; değişkenler arası korelasyon altında ekstrapolasyon yapma, heterojenliği gizleme, etkileşimleri yansıtamama, aralık seçimine duyarlılık ve model kaynaklı varyasyonlar gibi farklı kısıtlara sahiptir. Literatürde her bir yöntem belirli bir probleme çözüm olarak önerilmiş olsa da, bu yöntemlerin birbirine göre üstünlüklerinin hangi veri yapıları ve hangi model aileleri altında geçerli olduğu sistematik ve ortak bir deneysel çerçevede henüz incelenmemiştir. Ayrıca, benzer performansa sahip farklı modellerin çelişkili açıklamalar üretebilmesi açıklama güvenilirliğini zedelemektedir.
-
-Bu projenin temel amacı; PDP, ICE, ALE, DALE, RHALE, Regional Effect Plots with Implicit Interaction Detection (REPID), Stratified Partial Dependence (S-PD), Fast Partial Dependence (FPD), Conditional Partial Dependence (c-PD) ve Conditional Subgroup Partial Dependence (CS-PD) gibi yöntemlerin farklı veri yapıları ve model aileleri altındaki doğruluğunu ve tutarlılığını ortak bir deneysel çerçevede karşılaştırmalı olarak değerlendirmek; Rashomon perspektifini kullanarak mevcut yöntemlerin (özellikle RHALE yöntemindeki aralık seçimi ve bölgesel açıklamalar) yöntemsel bileşenlerini geliştirmek; ele alınan yöntemleri açık kaynaklı bir R paketinde birleştirmek ve uygulayıcılar için kanıta dayalı bir kullanım rehberi sunmaktır.
-
-Proje metodolojisi dört temel iş paketinden oluşmaktadır:
-1. Kontrollü sentetik veri senaryoları ve OpenML kıyaslama veri setleri üzerinde yöntemlerin doğruluğunun nicel olarak değerlendirilmesi.
-2. Tek bir model yerine Rashomon kümesini dikkate alarak RHALE yönteminin aralık optimizasyonu ve bölgesel açıklama kararlarının iyileştirilmesi.
-3. Tüm yöntemleri standart bir arayüzle sunan, test kapsamı yüksek açık kaynaklı bir R paketinin geliştirilmesi.
-4. Ampirik bulguların sentezlenerek uygulayıcılar için karar şemaları ve seçim rehberinin oluşturulması.
-
-Proje sonucunda açıklanabilir yapay zekâ literatüründeki yöntem seçimi belirsizliği giderilecek, Rashomon perspektifi açıklama kalitesini artıran yöntemsel bir bileşen olarak sunulacak ve doğrudan kullanılabilecek nitelikli bir açık kaynaklı yazılım aracı kazandırılacaktır.`,
-    desc_en: `In explainable artificial intelligence (XAI), Partial Dependence Plots (PDP) and related methods—such as Individual Conditional Expectation (ICE), Accumulated Local Effects (ALE), Differential Accumulated Local Effects (DALE), and Robust and Heterogeneity-Aware Accumulated Local Effects (RHALE)—are widely used to interpret feature effects in complex black-box models. However, existing methods suffer from known limitations under feature correlation, extrapolation, hidden heterogeneity, interaction neglect, interval selection sensitivity, and model-level variance. Crucially, their comparative validity across diverse data properties and model families has lacked systematic benchmarking, and conflicting explanations across equally good models severely undermine explanation fidelity.
-
-This project rigorously compares methods including PDP, ICE, ALE, DALE, RHALE, REPID, S-PD, FPD, c-PD, and CS-PD within a unified experimental framework. Furthermore, it leverages the Rashomon perspective to enhance method components (particularly interval optimization and regional explanations in RHALE), unifies these tools into an open-source R package, and provides evidence-based decision guidance for practitioners in high-stakes settings.`,
+    desc_tr: `Bu proje, açıklanabilir yapay zekâda yaygın olarak kullanılan kısmi bağımlılık temelli yöntemlerin (PDP, ICE, ALE, RHALE vb.) farklı veri yapıları ve model aileleri altındaki doğruluk ve tutarlılığını ortak bir deneysel çerçevede karşılaştırmalı olarak değerlendirmeyi amaçlar. Benzer performansa sahip modellerin çelişkili açıklamalar üretmesi sorununu Rashomon perspektifiyle ele alarak mevcut yöntemlerin aralık optimizasyonu ve bölgesel açıklama bileşenlerini iyileştirir. Elde edilen yöntemler açık kaynaklı bir R paketinde birleştirilerek yüksek riskli karar destek sistemleri için kanıta dayalı bir kullanım rehberi sunulacaktır.`,
+    desc_en: `This project provides a unified comparative evaluation of partial dependence-based explainability methods (PDP, ICE, ALE, RHALE, etc.) across diverse data structures and model families. It leverages the Rashomon perspective to mitigate conflicting explanations among equally accurate models by enhancing interval optimization and regional attribution components. The developed methods are unified into an open-source R package alongside an evidence-based guideline for trustworthy decision support in high-stakes domains.`,
   },
+
+  // 2. (Önceki 3. Proje): ENFIELD / SHAP-sigma
   {
     id: "rashomon-time-series-enfield",
     status_en: "Active",
@@ -73,13 +40,25 @@ This project rigorously compares methods including PDP, ICE, ALE, DALE, RHALE, R
     type_tr: "Avrupa Birliği / Horizon Europe - ENFIELD",
     funding_en: "European Union via grant OC4-2025-TES-02 (ENFIELD project, Grant Agreement No. 101120657)",
     funding_tr: "Avrupa Birliği ENFIELD Projesi (Hibe No: OC4-2025-TES-02, Hibe Sözleşmesi No: 101120657)",
-    title_tr: "Zaman Serilerinde Rashomon Tabanlı ve Belirsizlik Farkındalıklı Açıklanabilir Yapay Zekâ",
-    title_en: "Rashomon-based Uncertainty-Aware Explainable AI for Time Series",
-    desc_tr: `Bu araştırma, Avrupa Birliği tarafından 101120657 sayılı Hibe Sözleşmesi kapsamında yürütülen ENFIELD projesi (OC4-2025-TES-02 hibe çağrısı) aracılığıyla desteklenmektedir.
+    title_tr: "Zaman Serilerinde Açıklama Uyuşmazlığı ve Rashomon Perspektifi ile Etiketsiz Anomali Tespiti",
+    title_en: "Leveraging Explanation Disagreement for Label-Free Anomaly Detection in Multivariate Time Series",
+    desc_tr: `Avrupa Birliği ENFIELD projesi (Hibe No: OC4-2025-TES-02) kapsamında desteklenen bu çalışma, çok değişkenli zaman serilerinde denetimsiz anomali tespiti ve değişken (KPI) düzeyinde anomali lokalizasyonu için etiket gerektirmeyen SHAP-σ boru hattını geliştirir. Üç iç kalite ölçütünü (Mass-Volume, Excess-Mass ve konsensüs) birleştiren veto kuralıyla seçilen çapa model ile dekorele ortağı eşleştirilerek kompakt bir kalite-çeşitlilik alt kümesi (Rashomon kümesi) oluşturulur. Modeller arasındaki vekil tabanlı SHAP öznitelik uyuşmazlığının standart sapması (dağılım kapısı) kullanılarak, hiçbir etiket verisine ihtiyaç duyulmadan yüksek kesinlikli ve yorumlanabilir KPI lokalizasyonu sağlanır.`,
+    desc_en: `Supported by the European Union ENFIELD project (Grant No. OC4-2025-TES-02, GA 101120657), this research develops SHAP-σ, a label-free pipeline for unsupervised multivariate time-series anomaly detection and feature-level (KPI) localization. An anchor detector selected via a label-free veto rule combining Mass-Volume, Excess-Mass, and score consensus is paired with a decorrelated partner inspired by the Rashomon effect. The cross-detector standard deviation of surrogate-based SHAP attributions acts as a dispersion gate, achieving high-precision, interpretable anomaly localization without requiring ground-truth labels.`,
+  },
 
-Proje, zaman serisi verilerinde tahmin ve model belirsizliklerini açıklanabilir yapay zekâ (XAI) çerçevesiyle ele almaktadır. Benzer tahmin başarısına sahip alternatif modellerin (Rashomon kümesi) zaman serisi tahminlerindeki davranış farklılıkları incelenmekte ve zamansal veri yapılarına özgü, belirsizliğe duyarlı ve güvenilir açıklama yöntemleri geliştirilmektedir.`,
-    desc_en: `Rashomon-based Uncertainty-Aware Explainable AI for Time Series project, funded by the European Union via grant OC4-2025-TES-02 issued and implemented by the ENFIELD project under grant agreement No. 101120657.
-
-The project investigates predictive and model uncertainty in time series analysis through the lens of explainable AI and the Rashomon effect, developing trustworthy, uncertainty-aware explanation techniques tailored for temporal data dynamics in mission-critical applications.`,
+  // 3. (Önceki 1. Proje): 125E452
+  {
+    id: "predictive-multiplicity-tunability",
+    code: "125E452",
+    status_en: "Active",
+    status_tr: "Yürürlükte",
+    type_en: "TÜBİTAK 1002 - Rapid Support",
+    type_tr: "TÜBİTAK 1002 - Hızlı Destek (1002-A)",
+    funding_en: "TÜBİTAK 1002-A (Grant No: 125E452)",
+    funding_tr: "TÜBİTAK 1002-A Hızlı Destek (Proje No: 125E452, Geçici No: 357820)",
+    title_tr: "Regresyon Ve Sınıflandırma Modellerinde Tahmin Tutarsızlığı Ve Ayarlanabilirlik: Güvenilir Makine Öğrenmesinde Hiperparametre Seçiminin Rolü",
+    title_en: "Predictive Multiplicity and Tunability in Regression and Classification Models: The Role of Hyperparameter Selection in Trustworthy Machine Learning",
+    desc_tr: `Bu proje, benzer ortalama başarıma sahip modellerin aynı girdilere farklı tahminler üretmesi olarak tanımlanan tahmin tutarsızlığı (predictive multiplicity) ile modellerin ayarlanabilirliği (tunability) arasındaki ilişkiyi inceler. Sınıflandırma ve regresyon problemlerinde hiperparametre seçimlerinin yalnızca genel model başarımı üzerindeki değil, bireysel tahmin güvenilirliği üzerindeki etkileri istatistiksel ve açıklanabilir yapay zekâ yöntemleriyle sistematik olarak analiz edilir. Amaç, model geliştiriciler için hiperparametre optimizasyonunda yalnızca doğruluğu değil, bireysel düzeyde güvenilirlik ve tutarlılığı da garanti altına alacak kriterler geliştirmektir.`,
+    desc_en: `This project investigates the interplay between predictive multiplicity—where near-equally accurate models yield conflicting individual predictions—and model tunability in regression and classification tasks. By systematically analyzing hyperparameter configurations through statistical modeling and explainable AI, the project moves beyond aggregate performance metrics to evaluate individual prediction consistency. The ultimate goal is to provide practitioners with tuning criteria that ensure both high predictive accuracy and individual-level reliability in high-stakes domains.`,
   },
 ];
