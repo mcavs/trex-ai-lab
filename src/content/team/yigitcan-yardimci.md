@@ -10,8 +10,8 @@ photo: ../../assets/team/yigitcan-yardimci.jpg
 group: member
 order: 3
 projects:
-  - code: "TÜBİTAK 126E831"
-    label: "1002A"
+  - code: "TÜBİTAK 1002"
+    label: "126E831"
 links:
   github: https://github.com/Yigitcanyardimci
   linkedin: https://www.linkedin.com/in/yigitcanyardimci/
