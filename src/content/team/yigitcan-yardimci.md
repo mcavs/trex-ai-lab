@@ -3,9 +3,9 @@ name: Yiğitcan Yardımcı
 role_en: Researcher
 role_tr: Araştırmacı
 bio_en: >-
-  Researcher at T-REX Lab.
+  Yiğitcan Yardımcı is a master's student in the Department of Statistics at Eskişehir Technical University. He is interested in explainable artificial intelligence, machine learning, and trustworthy modeling.
 bio_tr: >-
-  T-REX Lab araştırmacısı.
+  Yiğitcan Yardımcı, Eskişehir Teknik Üniversitesi İstatistik Bölümü'nde yüksek lisans öğrencisidir. Açıklanabilir yapay zekâ, makine öğrenmesi ve güvenilir modelleme konularıyla ilgilenmektedir.
 photo: ../../assets/team/yigitcan-yardimci.jpg
 group: member
 order: 3
