@@ -6,7 +6,7 @@ import BlogCard from "../../components/BlogCard.astro";
 import PaperItem from "../../components/PaperItem.astro";
 import { useTranslations, localizedUrl, locales } from "../../i18n/utils";
 import type { Lang } from "../../i18n/ui";
-import { researchAreas } from "../../data/research";
+import { projects } from "../../data/projects";
 import { postsForLang, blogHref } from "../../lib/content";
 
 export function getStaticPaths() {
@@ -48,7 +48,7 @@ const consoleData = {
   helpTitle: tr ? "komutlar:" : "available commands:",
   help: [
     { cmd: "whoami", desc: tr ? "lab hakkında" : "about the lab" },
-    { cmd: "research", desc: tr ? "araştırma alanları" : "research areas" },
+    { cmd: "projects", desc: tr ? "yürütülen projeler" : "research projects" },
     { cmd: "papers", desc: tr ? "yayınlar  [--year YYYY]" : "publications  [--year YYYY]" },
     { cmd: "team", desc: tr ? "ekip üyeleri" : "the people" },
     { cmd: "blog", desc: tr ? "son yazılar" : "recent posts" },
@@ -58,13 +58,13 @@ const consoleData = {
     { cmd: "clear", desc: tr ? "ekranı temizle" : "clear the screen" },
   ],
   sections: [
-    { name: "research", url: localizedUrl(lang, "research") },
+    { name: "projects", url: localizedUrl(lang, "projects") },
     { name: "papers", url: localizedUrl(lang, "papers") },
     { name: "team", url: localizedUrl(lang, "team") },
     { name: "blog", url: localizedUrl(lang, "blog") },
     { name: "contact", url: localizedUrl(lang, "contact") },
   ],
-  research: researchAreas.map((a) => (tr ? a.title_tr : a.title_en)),
+  projects: projects.map((p) => (tr ? p.title_tr : p.title_en)),
   papers: papersSorted.slice(0, 8).map((p) => ({
     label: p.data.title,
     year: p.data.year,
@@ -103,17 +103,27 @@ const consoleData = {
     <Console data={consoleData} />
   </section>
 
-  <!-- research -->
+  <!-- projects -->
   <section class="section wrap rule">
-    <p class="cmd-head"><span class="pfx">trex:~$</span> ls research/</p>
+    <div class="sec-head">
+      <p class="cmd-head"><span class="pfx">trex:~$</span> ls projects/</p>
+      <a class="arrow" href={localizedUrl(lang, "projects")}>{t("home.projects.all")} →</a>
+    </div>
     <ol class="index areas">
       {
-        researchAreas.map((area, i) => (
+        projects.map((proj, i) => (
           <li class="area row">
             <span class="prompt">{String(i + 1).padStart(2, "0")}</span>
             <div>
-              <h3 class="area-title">{tr ? area.title_tr : area.title_en}</h3>
-              <p class="muted">{tr ? area.desc_tr : area.desc_en}</p>
+              <div class="proj-meta-line">
+                {proj.code && <span class="badge code">{proj.code}</span>}
+                <span class="badge status">{tr ? proj.status_tr : proj.status_en}</span>
+                <span class="badge type">{tr ? proj.type_tr : proj.type_en}</span>
+              </div>
+              <h3 class="area-title">
+                <a href={localizedUrl(lang, "projects")} class="proj-link">{tr ? proj.title_tr : proj.title_en}</a>
+              </h3>
+              <p class="muted">{tr ? proj.desc_tr.split("\n\n")[0] : proj.desc_en.split("\n\n")[0]}</p>
             </div>
           </li>
         ))
@@ -203,6 +213,41 @@ const consoleData = {
   }
   .area-title {
     font-weight: 700;
+  }
+  .proj-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--line-strong);
+  }
+  .proj-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .proj-meta-line {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+  }
+  .badge {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    padding: 0.1rem 0.45rem;
+    border-radius: 3px;
+    border: 1px solid var(--line-strong);
+  }
+  .badge.code {
+    background: var(--line);
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .badge.status {
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.3);
+  }
+  .badge.type {
+    color: var(--text-muted);
   }
   .area .muted {
     grid-column: 2;

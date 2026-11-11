@@ -23,7 +23,7 @@ export const ui = {
     "nav.team": "Team",
     "nav.papers": "Papers",
     "nav.blog": "Blog",
-    "nav.research": "Research",
+    "nav.projects": "Projects",
     "nav.contact": "Contact",
 
     "theme.toggle": "Toggle theme",
@@ -34,9 +34,10 @@ export const ui = {
     "home.hero.title": "A clear view into explainable AI.",
     "home.hero.subtitle":
       "We build methods that make machine learning models transparent, faithful, and trustworthy.",
-    "home.hero.cta.research": "Our research",
+    "home.hero.cta.projects": "Our projects",
     "home.hero.cta.papers": "Read papers",
-    "home.research.title": "Research areas",
+    "home.projects.title": "Funded & ongoing projects",
+    "home.projects.all": "All projects",
     "home.papers.title": "Recent papers",
     "home.papers.all": "All papers",
     "home.blog.title": "From the blog",
@@ -70,9 +71,11 @@ export const ui = {
       "This post is not available in English yet. Read it in Turkish:",
     "blog.readIn": "Read in",
 
-    "research.title": "Research",
-    "research.intro":
-      "We work on making AI systems interpretable, faithful, and trustworthy. Our main directions:",
+    "projects.title": "Projects",
+    "projects.intro":
+      "Funded and active research projects conducted at trex.ai (Trustworthy & Explainable AI Lab):",
+    "projects.status": "Status",
+    "projects.grant": "Grant / Type",
 
     "contact.title": "Contact",
     "contact.intro": "Get in touch with trex.ai (Trustworthy & Explainable AI Lab).",
@@ -98,7 +101,7 @@ export const ui = {
     "nav.team": "Ekip",
     "nav.papers": "Makaleler",
     "nav.blog": "Blog",
-    "nav.research": "Araştırma",
+    "nav.projects": "Projeler",
     "nav.contact": "İletişim",
 
     "theme.toggle": "Temayı değiştir",
@@ -109,9 +112,10 @@ export const ui = {
     "home.hero.title": "Açıklanabilir yapay zekaya berrak bir bakış.",
     "home.hero.subtitle":
       "Makine öğrenmesi modellerini şeffaf, sadık ve güvenilir kılan yöntemler geliştiriyoruz.",
-    "home.hero.cta.research": "Araştırmamız",
+    "home.hero.cta.projects": "Projelerimiz",
     "home.hero.cta.papers": "Makaleleri oku",
-    "home.research.title": "Araştırma alanları",
+    "home.projects.title": "Yürütülen projeler",
+    "home.projects.all": "Tüm projeler",
     "home.papers.title": "Son makaleler",
     "home.papers.all": "Tüm makaleler",
     "home.blog.title": "Blogdan",
@@ -145,9 +149,11 @@ export const ui = {
       "Bu yazı henüz Türkçe mevcut değil. İngilizce okuyabilirsin:",
     "blog.readIn": "Şu dilde oku:",
 
-    "research.title": "Araştırma",
-    "research.intro":
-      "Yapay zeka sistemlerini yorumlanabilir, sadık ve güvenilir kılmaya çalışıyoruz. Ana yönlerimiz:",
+    "projects.title": "Projeler",
+    "projects.intro":
+      "trex.ai (Trustworthy & Explainable AI Lab) bünyesinde yürütülen ve desteklenen güncel araştırma projeleri:",
+    "projects.status": "Durum",
+    "projects.grant": "Tür / Destek",
 
     "contact.title": "İletişim",
     "contact.intro": "trex.ai (Trustworthy & Explainable AI Lab) ile iletişime geçin.",

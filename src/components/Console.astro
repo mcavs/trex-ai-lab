@@ -14,7 +14,7 @@ interface ConsoleData {
   helpTitle: string;
   help: { cmd: string; desc: string }[];
   sections: { name: string; url: string }[];
-  research: string[];
+  projects: string[];
   papers: { label: string; year: number; href: string }[];
   team: { name: string; role: string }[];
   blog: { title: string; date: string; href: string }[];
@@ -28,7 +28,7 @@ interface Props {
   title?: string;
 }
 const { data, title = "trex.ai — bash — 80×24" } = Astro.props;
-const chips = ["help", "whoami", "research", "papers", "team", "blog", "contact"];
+const chips = ["help", "whoami", "projects", "papers", "team", "blog", "contact"];
 ---
 
 <div class="term win scanlines">
@@ -218,13 +218,13 @@ const chips = ["help", "whoami", "research", "papers", "team", "blog", "contact"
             .join("   ")
         );
       },
-      research: function () {
-        D.research.forEach(function (r, i) {
+      projects: function () {
+        D.projects.forEach(function (p, i) {
           line(
             '<span class="k">' +
               String(i + 1).padStart(2, "0") +
               "</span>  " +
-              esc(r)
+              esc(p)
           );
         });
       },
@@ -284,10 +284,10 @@ const chips = ["help", "whoami", "research", "papers", "team", "blog", "contact"
         return true;
       }
     };
-    // aliases
+    COMMANDS["research"] = COMMANDS.projects;
     COMMANDS["about"] = COMMANDS.whoami;
     COMMANDS["?"] = COMMANDS.help;
-    var OPEN = { team: 1, papers: 1, blog: 1, research: 1, contact: 1 };
+    var OPEN = { team: 1, papers: 1, blog: 1, projects: 1, research: 1, contact: 1 };
 
     function run(raw) {
       var cmd = (raw || "").trim();
