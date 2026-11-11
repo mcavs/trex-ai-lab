@@ -75,12 +75,12 @@ const papers = d.papers ?? [];
     )}
 
     <div class="links">
+      {l.linkedin && <a href={l.linkedin} target="_blank" rel="noopener" aria-label={`${d.name} LinkedIn`}>LinkedIn</a>}
+      {l.email && <a href={`mailto:${l.email}`} aria-label={`Email ${d.name}`}>Email</a>}
       {l.website && <a href={l.website} target="_blank" rel="noopener" aria-label={`${d.name} website`}>Web</a>}
       {l.scholar && <a href={l.scholar} target="_blank" rel="noopener" aria-label={`${d.name} Google Scholar`}>Scholar</a>}
       {l.github && <a href={l.github} target="_blank" rel="noopener" aria-label={`${d.name} GitHub`}>GitHub</a>}
-      {l.linkedin && <a href={l.linkedin} target="_blank" rel="noopener" aria-label={`${d.name} LinkedIn`}>LinkedIn</a>}
       {l.x && <a href={l.x} target="_blank" rel="noopener" aria-label={`${d.name} X`}>X</a>}
-      {l.email && <a href={`mailto:${l.email}`} aria-label={`Email ${d.name}`}>Email</a>}
     </div>
   </div>
 </article>
