@@ -17,7 +17,7 @@ export const ui = {
     "site.fullName": "Trustworthy & Explainable AI Lab",
     "site.tagline": "Trustworthy & Explainable AI Lab",
     "site.description":
-      "Trustworthy & Explainable AI Lab (trex.ai) researches explainable and trustworthy artificial intelligence — making model decisions transparent, faithful, and accountable.",
+      "trex.ai - Trustworthy & Explainable AI Lab researches trustworthy and explainable artificial intelligence - making model decisions transparent, reliable and accountable.",
 
     "nav.home": "Home",
     "nav.team": "Team",
@@ -95,7 +95,7 @@ export const ui = {
     "site.fullName": "Trustworthy & Explainable AI Lab",
     "site.tagline": "Trustworthy & Explainable AI Lab",
     "site.description":
-      "Trustworthy & Explainable AI Lab (trex.ai), güvenilir ve açıklanabilir yapay zeka üzerine araştırma yapar — model kararlarını şeffaf, sadık ve hesap verebilir kılar.",
+      "trex.ai - Trustworthy & Explainable AI Lab, model kararlarını şeffaf, güvenilir ve hesap verebilir kılarak güvenilir ve açıklanabilir yapay zeka üzerine araştırmalar yürütür.",
 
     "nav.home": "Anasayfa",
     "nav.team": "Ekip",
