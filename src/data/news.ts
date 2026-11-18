@@ -12,8 +12,8 @@ export interface NewsItem {
 export const news: NewsItem[] = [
   {
     id: "ieee-asyu-rashomon-ale",
-    tag_en: "publication",
-    tag_tr: "yayın",
+    tag_en: "conference",
+    tag_tr: "konferans",
     title_en:
       "Our paper 'Towards Reliable Feature Explanations in Correlated Data: A Rashomon Accumulated Local Effects Framework' (Yiğitcan Yardımcı & Mustafa Çavuş) is now published on IEEE Xplore.",
     title_tr:
@@ -24,8 +24,8 @@ export const news: NewsItem[] = [
   },
   {
     id: "ieee-asyu-shap-sigma",
-    tag_en: "publication",
-    tag_tr: "yayın",
+    tag_en: "conference",
+    tag_tr: "konferans",
     title_en:
       "Our paper 'SHAP-σ: A Label-Free Rashomon Pipeline for Multivariate Time-Series Anomaly Detection' (Uğur Dar, Jeriek Van den Abeele, Mustafa Çavuş & Sara Malacarne) is now published on IEEE Xplore.",
     title_tr:
