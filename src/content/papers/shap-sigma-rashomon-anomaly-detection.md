@@ -1,7 +1,7 @@
 ---
 title: "SHAP-σ: A Label-Free Rashomon Pipeline for Multivariate Time-Series Anomaly Detection"
 authors:
-  - "Uğur Dar*"
+  - "Uğur Dar"
   - "Jeriek Van den Abeele"
   - "Mustafa Çavuş"
   - "Sara Malacarne"
