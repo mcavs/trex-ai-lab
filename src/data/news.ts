@@ -11,6 +11,30 @@ export interface NewsItem {
 
 export const news: NewsItem[] = [
   {
+    id: "ieee-asyu-rashomon-ale",
+    tag_en: "publication",
+    tag_tr: "yayın",
+    title_en:
+      "Our paper 'Towards Reliable Feature Explanations in Correlated Data: A Rashomon Accumulated Local Effects Framework' (Yiğitcan Yardımcı & Mustafa Çavuş) is now published on IEEE Xplore.",
+    title_tr:
+      "Yiğitcan Yardımcı ve Mustafa Çavuş imzalı 'Towards Reliable Feature Explanations in Correlated Data: A Rashomon Accumulated Local Effects Framework' başlıklı bildirimiz IEEE Xplore'da yayınlandı.",
+    href: "https://doi.org/10.1109/ASYU71790.2026.11772211",
+    date: "2026-11-18",
+    expires: "2027-02-28",
+  },
+  {
+    id: "ieee-asyu-shap-sigma",
+    tag_en: "publication",
+    tag_tr: "yayın",
+    title_en:
+      "Our paper 'SHAP-σ: A Label-Free Rashomon Pipeline for Multivariate Time-Series Anomaly Detection' (Uğur Dar, Jeriek Van den Abeele, Mustafa Çavuş & Sara Malacarne) is now published on IEEE Xplore.",
+    title_tr:
+      "Uğur Dar, Jeriek Van den Abeele, Mustafa Çavuş ve Sara Malacarne imzalı 'SHAP-σ: A Label-Free Rashomon Pipeline for Multivariate Time-Series Anomaly Detection' başlıklı bildirimiz IEEE Xplore'da yayınlandı.",
+    href: "https://doi.org/10.1109/ASYU71790.2026.11772297",
+    date: "2026-11-18",
+    expires: "2027-02-28",
+  },
+  {
     id: "ubk2026-yigitcan",
     tag_en: "conference",
     tag_tr: "kongre",

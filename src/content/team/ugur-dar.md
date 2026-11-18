@@ -19,6 +19,9 @@ papers:
   - code: "FGCS '26"
     label: "XAI to MLOps"
     href: "https://arxiv.org/abs/2412.11308"
+  - code: "ASYU '26"
+    label: "SHAP-σ"
+    href: "https://doi.org/10.1109/ASYU71790.2026.11772297"
 links:
   github: https://github.com/ugurdar
   linkedin: https://www.linkedin.com/in/ugurdar/

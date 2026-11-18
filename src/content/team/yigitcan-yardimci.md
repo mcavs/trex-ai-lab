@@ -12,6 +12,10 @@ order: 3
 projects:
   - code: "TÜBİTAK 1002"
     label: "126E831"
+papers:
+  - code: "ASYU '26"
+    label: "Rashomon ALE"
+    href: "https://doi.org/10.1109/ASYU71790.2026.11772211"
 links:
   github: https://github.com/Yigitcanyardimci
   linkedin: https://www.linkedin.com/in/yigitcanyardimci/
